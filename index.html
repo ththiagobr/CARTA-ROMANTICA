@@ -6,864 +6,392 @@
   <title>❤️ Uma Carta Para Você ❤️</title>
   <style>
     :root {
-      --bg1: #fff8fb;
-      --bg2: #ffeaf3;
-      --bg3: #ffd7e8;
-      --text: #55233c;
-      --muted: #8b6173;
-      --accent: #ff5b92;
-      --accent2: #ff85ae;
-      --accent3: #ffd3e2;
-      --gold: #ffe89d;
-      --glass: rgba(255, 255, 255, 0.68);
-      --glass-strong: rgba(255, 255, 255, 0.86);
-      --line: rgba(255, 255, 255, 0.58);
-      --shadow-sm: 0 12px 28px rgba(183, 80, 120, 0.10);
-      --shadow-md: 0 22px 56px rgba(183, 80, 120, 0.14);
-      --shadow-lg: 0 36px 120px rgba(183, 80, 120, 0.18);
-      --radius-xl: 44px;
-      --radius-lg: 34px;
-      --radius-md: 24px;
-      --ease: .55s cubic-bezier(.22,.8,.22,1);
-      --ease-soft: .95s cubic-bezier(.2,.8,.2,1);
-      --maxw: 1200px;
+      --bg1: #fff4f8;
+      --bg2: #ffe7ef;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #5f2941;
+      --muted: #8b5b6d;
+      --accent: #ff5c8a;
+      --accent-2: #ff9eb5;
+      --shadow: 0 18px 45px rgba(214, 85, 129, 0.18);
     }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      min-height: 100%;
-      overflow-x: hidden;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.97) 0%, var(--bg1) 24%, var(--bg2) 60%, var(--bg3) 100%);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      scroll-behavior: smooth;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+        radial-gradient(circle at top, #fffdfd 0%, var(--bg1) 45%, var(--bg2) 100%);
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body::before {
-      opacity: .7;
-      background:
-        radial-gradient(circle at 8% 14%, rgba(255,255,255,.96) 0 2px, transparent 3px),
-        radial-gradient(circle at 84% 16%, rgba(255,255,255,.78) 0 2px, transparent 3px),
-        radial-gradient(circle at 18% 84%, rgba(255,255,255,.52) 0 2px, transparent 3px),
-        radial-gradient(circle at 76% 72%, rgba(255,255,255,.60) 0 2px, transparent 3px),
-        radial-gradient(circle at 48% 24%, rgba(255,255,255,.35) 0 1px, transparent 2px),
-        radial-gradient(circle at 58% 88%, rgba(255,255,255,.30) 0 1px, transparent 2px);
-    }
-
-    body::after {
-      background:
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,.28), transparent 22%),
-        radial-gradient(circle at 92% 8%, rgba(255,255,255,.15), transparent 22%),
-        radial-gradient(circle at 50% 100%, rgba(255,255,255,.12), transparent 30%);
-    }
-
-    .vignette {
+      content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
-      z-index: 1;
       background:
-        radial-gradient(circle at center, transparent 48%, rgba(93, 28, 57, 0.08) 78%, rgba(34, 7, 21, 0.16) 100%);
-      mix-blend-mode: multiply;
-    }
-
-    .ambient {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,0.55) 0 2px, transparent 3px),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.5) 0 2px, transparent 3px);
       pointer-events: none;
-      overflow: hidden;
+      opacity: 0.7;
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(64px);
-      opacity: .28;
-      will-change: transform;
-    }
-
-    .orb1 {
-      width: 460px;
-      height: 460px;
-      top: -120px;
-      right: -80px;
-      background: radial-gradient(circle, rgba(255, 150, 190, .96), transparent 68%);
-    }
-
-    .orb2 {
-      width: 480px;
-      height: 480px;
-      left: -120px;
-      bottom: -140px;
-      background: radial-gradient(circle, rgba(255, 227, 236, .96), transparent 70%);
-    }
-
-    .orb3 {
-      width: 280px;
-      height: 280px;
-      left: 50%;
-      top: 26%;
-      transform: translateX(-50%);
-      opacity: .18;
-      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
-    }
-
-    .shell {
-      position: relative;
-      z-index: 2;
-      width: min(100%, var(--maxw));
+    .wrap {
+      width: min(100%, 980px);
       margin: 0 auto;
-      padding: 18px 14px 34px;
+      padding: 28px 18px 50px;
     }
 
     .screen {
       display: none;
-      opacity: 0;
-      transform: translateY(16px) scale(.995);
-      transition: opacity .8s ease, transform 1s var(--ease);
+      animation: fadeIn 0.8s ease;
     }
 
-    .screen.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0) scale(1);
+    .screen.active { display: block; }
+
+    .hero, .card {
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
     }
 
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.66));
-      border: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .cover {
-      position: relative;
-      min-height: calc(100vh - 36px);
+    .hero {
+      min-height: calc(100vh - 56px);
       display: grid;
       place-items: center;
-      padding: 42px 28px;
-      border-radius: var(--radius-xl);
+      padding: 26px;
+      position: relative;
       overflow: hidden;
-      isolation: isolate;
-      contain: layout paint;
     }
 
-    .cover::before,
-    .cover::after {
+    .hero::before,
+    .hero::after {
       content: "❤";
       position: absolute;
-      font-size: clamp(120px, 14vw, 200px);
-      color: rgba(255, 91, 146, .08);
-      animation: floatHeart 7s ease-in-out infinite;
-      will-change: transform;
+      font-size: 120px;
+      color: rgba(255, 92, 138, 0.08);
+      animation: floatHeart 5.5s ease-in-out infinite;
     }
 
-    .cover::before { top: 12px; left: 16px; }
-    .cover::after { right: 18px; bottom: 14px; animation-delay: 2.2s; }
+    .hero::before { top: 40px; left: 40px; }
+    .hero::after { bottom: 30px; right: 50px; animation-delay: 1.8s; }
 
-    .cinemaGlow {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(68px);
-      pointer-events: none;
-      opacity: .34;
-    }
-
-    .g1 {
-      width: 560px;
-      height: 560px;
-      top: -140px;
-      right: -90px;
-      background: radial-gradient(circle, rgba(255, 153, 191, .98), transparent 68%);
-    }
-
-    .g2 {
-      width: 500px;
-      height: 500px;
-      left: -90px;
-      bottom: -140px;
-      background: radial-gradient(circle, rgba(255, 229, 237, .98), transparent 70%);
-    }
-
-    .g3 {
-      width: 300px;
-      height: 300px;
-      left: 50%;
-      top: 24%;
-      transform: translateX(-50%);
-      opacity: .2;
-      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
-    }
-
-    .filmShine {
-      position: absolute;
-      inset: -20% auto -20% -30%;
-      width: 42%;
-      transform: skewX(-18deg);
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
-      filter: blur(10px);
-      animation: shineSweep 8s linear infinite;
-      pointer-events: none;
-      opacity: .5;
-    }
-
-    .coverInner {
+    .hero-inner {
+      text-align: center;
+      max-width: 760px;
       position: relative;
       z-index: 2;
-      max-width: 930px;
-      text-align: center;
-      will-change: transform;
     }
 
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      padding: 11px 18px;
+      padding: 10px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,.84);
+      background: rgba(255,255,255,0.75);
       color: var(--accent);
-      font-size: .98rem;
-      font-weight: 800;
-      box-shadow: var(--shadow-sm);
+      font-weight: 700;
       margin-bottom: 18px;
-      letter-spacing: .01em;
+      box-shadow: 0 10px 28px rgba(255, 92, 138, 0.12);
     }
 
-    .trailerLine {
-      display: block;
-      margin-bottom: 12px;
-      color: rgba(255, 91, 146, .78);
-      font-size: .95rem;
-      font-weight: 800;
-      letter-spacing: .24em;
-      text-transform: uppercase;
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.1;
     }
 
-    .titleStack {
-      position: relative;
-      display: grid;
-      place-items: center;
-      margin-bottom: 14px;
-    }
-
-    .titleLayer {
-      grid-area: 1 / 1;
-      margin: 0;
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
-      font-size: clamp(2.55rem, 6vw, 5.5rem);
-    }
-
-    .titleShadow {
-      color: rgba(255, 91, 146, .16);
-      transform: translateY(14px) scale(1.03);
-      filter: blur(1px);
-    }
-
-    .titleGlow {
-      color: rgba(255,255,255,.72);
-      transform: translateY(-7px) scale(1.01);
-      filter: blur(10px);
-    }
-
-    .titleMain {
-      position: relative;
-      color: var(--text);
-      z-index: 2;
-      animation: titleLift 1.2s var(--ease-soft);
-    }
-
-    .lead {
-      max-width: 730px;
+    .hero p {
       margin: 0 auto 16px;
-      font-size: 1.08rem;
-      line-height: 2;
+      max-width: 620px;
       color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
     }
 
-    .miniLine {
-      width: 126px;
-      height: 1px;
-      margin: 22px auto 18px;
-      background: linear-gradient(90deg, transparent, rgba(255,91,145,.58), transparent);
-    }
-
-    .tapHint {
+    .tap-hint {
+      margin: 24px auto 18px;
       color: var(--accent);
+      font-weight: 700;
       font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: .03em;
     }
 
-    .actions,
-    .navGroup {
+    .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-    }
-
-    .actions {
+      align-items: center;
       justify-content: center;
-      margin-top: 28px;
+      margin-top: 22px;
     }
 
     button {
-      appearance: none;
-      border: 0;
+      border: none;
       border-radius: 999px;
       padding: 14px 24px;
-      font: inherit;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      transition:
-        transform var(--ease),
-        box-shadow var(--ease),
-        opacity var(--ease),
-        background var(--ease),
-        filter var(--ease);
-      -webkit-tap-highlight-color: transparent;
-      box-shadow: 0 12px 28px rgba(255, 99, 150, .14);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
     }
 
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(255, 99, 150, .2);
-      filter: saturate(1.04);
+      box-shadow: 0 14px 28px rgba(255, 92, 138, 0.22);
     }
 
-    button:active { transform: scale(.985); }
-
-    button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-      box-shadow: none;
-      filter: none;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff7ba2);
+      color: white;
     }
 
-    .primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent), #ff7aa6);
-    }
-
-    .secondary {
+    .btn-secondary {
+      background: rgba(255,255,255,0.96);
       color: var(--accent);
-      background: rgba(255,255,255,.96);
     }
 
-    .ghost {
+    .btn-ghost {
+      background: rgba(255,255,255,0.65);
       color: var(--muted);
-      background: rgba(255,255,255,.66);
-    }
-
-    .premiumMusic {
-      position: relative;
-      overflow: hidden;
-      color: #fff;
-      background:
-        linear-gradient(135deg, #ff5b92, #ff86ac 48%, #ffd692);
-    }
-
-    .premiumMusic::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
-      transform: translateX(-120%);
-      transition: transform .9s ease;
-    }
-
-    .premiumMusic:hover::before {
-      transform: translateX(120%);
-    }
-
-    .topbar,
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
     }
 
     .topbar {
-      margin-bottom: 16px;
-      padding-inline: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .signature {
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(255,255,255,0.7);
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(255, 92, 138, 0.12);
     }
 
     .progress {
       color: var(--muted);
-      font-weight: 800;
-      letter-spacing: .01em;
+      font-weight: 600;
     }
 
     .card {
+      padding: 22px;
       position: relative;
-      padding: 24px;
-      border-radius: 42px;
       overflow: hidden;
-      isolation: isolate;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.24), transparent 20%),
-        radial-gradient(circle at top right, rgba(255,255,255,.28), transparent 30%);
-    }
-
-    .cardHeader {
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
       text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .cardHeader h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 4vw, 2.95rem);
-      letter-spacing: -0.02em;
-      text-wrap: balance;
     }
 
     .subtitle {
-      max-width: 760px;
-      margin: 0 auto;
+      text-align: center;
       color: var(--muted);
-      line-height: 1.84;
-    }
-
-    .ornament {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin: 18px 0 6px;
-      color: rgba(255, 93, 146, .74);
-      font-size: .95rem;
-    }
-
-    .ornament::before,
-    .ornament::after {
-      content: "";
-      width: 58px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,93,146,.42), transparent);
+      margin: 0 auto 22px;
+      max-width: 700px;
+      line-height: 1.7;
     }
 
     .slides {
       position: relative;
-      min-height: 630px;
-      perspective: 1200px;
+      min-height: 560px;
     }
 
     .slide {
       display: none;
-      opacity: 0;
-      transform: translateY(28px) scale(.985) rotateX(4deg);
-      transform-origin: center center;
+      animation: fadeInUp 0.55s ease;
     }
 
-    .slide.active {
-      display: block;
-      animation: cinematicIn .85s var(--ease) forwards;
-    }
+    .slide.active { display: block; }
 
-    .story {
+    .media {
       display: grid;
-      grid-template-columns: 1.04fr .96fr;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
       align-items: center;
-    }
-
-    .frame {
-      position: relative;
-      padding: 10px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74));
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-      transform: translateZ(0);
-      will-change: transform;
-    }
-
-    .frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.74),
-        inset 0 16px 24px rgba(255,255,255,.18);
-    }
-
-    .frame::after {
-      content: "";
-      position: absolute;
-      inset: auto 18px 12px 18px;
-      height: 22px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(0,0,0,.09), transparent 72%);
-      filter: blur(12px);
-      opacity: .35;
-      pointer-events: none;
     }
 
     .photo {
       width: 100%;
       aspect-ratio: 4 / 5;
-      display: block;
       object-fit: cover;
-      border-radius: 22px;
+      border-radius: 24px;
+      box-shadow: 0 14px 30px rgba(127, 67, 88, 0.16);
+      border: 4px solid rgba(255,255,255,0.85);
       background: linear-gradient(135deg, #ffe5ee, #fff7fa);
-      box-shadow: 0 18px 34px rgba(127, 67, 88, 0.14);
-      transform: translateZ(0);
     }
 
-    .textCard {
-      position: relative;
-      padding: 28px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.68));
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.74),
-        0 10px 30px rgba(155, 85, 112, .08);
-      transform: translateZ(0);
-      will-change: transform;
+    .text-block {
+      background: rgba(255,255,255,0.72);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.65);
     }
 
-    .textCard::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 26%);
-    }
-
-    .sectionKicker {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: .85rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255, 93, 146, .8);
-    }
-
-    .textCard h3,
-    .finalCopy h3 {
+    .text-block h3 {
       margin: 0 0 12px;
+      font-size: 1.65rem;
       color: var(--accent);
-      letter-spacing: -0.02em;
     }
 
-    .textCard h3 { font-size: 1.75rem; }
-
-    .textCard p {
+    .text-block p {
       margin: 0;
-      font-size: 1.06rem;
-      line-height: 1.94;
+      line-height: 1.85;
       color: var(--text);
+      font-size: 1.05rem;
     }
 
-    .finalStage {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav .left,
+    .nav .right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .final-message {
       position: relative;
-      min-height: 560px;
+      text-align: center;
+      padding: 20px 10px 34px;
+      min-height: 360px;
       display: grid;
       place-items: center;
-      padding: 26px 12px 50px;
       overflow: hidden;
-      text-align: center;
       isolation: isolate;
-      contain: layout paint;
     }
 
-    .finalAura {
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      border-radius: 999px;
-      filter: blur(60px);
-      opacity: .34;
-      pointer-events: none;
-    }
-
-    .a1 {
-      top: -110px;
-      right: -90px;
-      background: radial-gradient(circle, rgba(255, 185, 212, .95), transparent 68%);
-    }
-
-    .a2 {
-      left: -90px;
-      bottom: -140px;
-      background: radial-gradient(circle, rgba(255, 228, 167, .78), transparent 70%);
-    }
-
-    .a3 {
-      width: 340px;
-      height: 340px;
-      top: 48%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: .18;
-      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
-    }
-
-    .explosionLayer {
-      position: absolute;
-      inset: 0;
-      z-index: 12;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .explosionParticle {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(.2);
-      animation: explodeParticle 3s cubic-bezier(.18,.7,.2,1) forwards;
-      will-change: transform, opacity;
-      user-select: none;
-      filter:
-        drop-shadow(0 0 10px rgba(255,255,255,.98))
-        drop-shadow(0 0 18px rgba(255, 193, 219, .95));
-    }
-
-    .explosionParticle.heart {
-      color: rgba(255, 87, 140, .98);
-      text-shadow:
-        0 0 12px rgba(255, 87, 140, .96),
-        0 0 24px rgba(255, 165, 196, .82);
-    }
-
-    .explosionParticle.star {
-      color: rgba(255, 235, 150, .99);
-      text-shadow:
-        0 0 12px rgba(255, 232, 138, .98),
-        0 0 24px rgba(255,255,255,.88);
-    }
-
-    .finalCopy {
+    .final-copy {
       position: relative;
       z-index: 5;
-      max-width: 920px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 34px 28px;
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.44));
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.52),
-        0 18px 44px rgba(170, 82, 116, .10);
+    }
+
+    .final-copy h3 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent);
+    }
+
+    .final-copy p {
+      font-size: 1.1rem;
+      line-height: 1.95;
+      margin: 0 0 16px;
+    }
+
+    .final-sign {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-top: 16px;
+    }
+
+    .sparkle-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
       opacity: 0;
-      transform: translateY(28px) scale(.98);
-      transition: opacity 1s ease, transform 1s var(--ease-soft);
+    }
+
+    .sparkle-layer.show {
+      opacity: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      user-select: none;
+      opacity: 0;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.95)) drop-shadow(0 0 18px rgba(255, 190, 220, 0.95));
+      animation: sparklePulse 1s ease-in-out infinite;
       will-change: transform, opacity;
     }
 
-    .finalCopy.reveal {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+    .sparkle.heart {
+      color: rgba(255, 87, 140, 0.98);
+      text-shadow: 0 0 12px rgba(255, 87, 140, 0.9), 0 0 24px rgba(255, 160, 190, 0.75);
     }
 
-    .finalEmo {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.64);
-      color: rgba(255, 91, 146, .85);
-      font-size: .9rem;
-      font-weight: 800;
-      letter-spacing: .04em;
-      text-transform: uppercase;
+    .sparkle.star {
+      color: rgba(255, 235, 150, 0.98);
+      text-shadow: 0 0 12px rgba(255, 232, 138, 0.92), 0 0 24px rgba(255,255,255,0.85);
     }
 
-    .finalCopy h3 {
-      margin-bottom: 18px;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      text-wrap: balance;
-    }
-
-    .finalCopy p {
-      margin: 0 0 16px;
-      font-size: 1.1rem;
-      line-height: 2;
-    }
-
-    .finalSign {
-      margin-top: 16px;
-      font-size: 1.16rem;
-      font-weight: 800;
-    }
-
-    .nav { margin-top: 24px; }
-
-    .footerNote {
+    .footer-note {
       margin-top: 18px;
       text-align: center;
       color: var(--muted);
-      font-size: .96rem;
+      font-size: 0.95rem;
     }
 
     audio { display: none; }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes floatHeart {
-      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-      50% { transform: translate3d(0, -16px, 0) rotate(6deg); }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(6deg); }
     }
 
-    @keyframes titleLift {
-      0% { opacity: 0; transform: translateY(18px) scale(.985); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes sparklePulse {
+      0%, 100% { opacity: 0.2; transform: scale(0.7); }
+      50% { opacity: 1; transform: scale(1.15); }
     }
 
-    @keyframes shineSweep {
-      0% { transform: translateX(-120%) skewX(-18deg); }
-      100% { transform: translateX(340%) skewX(-18deg); }
-    }
-
-    @keyframes cinematicIn {
-      0% {
-        opacity: 0;
-        transform: translateY(28px) scale(.985) rotateX(4deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0deg);
-      }
-    }
-
-    @keyframes explodeParticle {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(.2) rotate(0deg);
-      }
-      10% { opacity: 1; }
-      55% { opacity: 1; }
-      100% {
-        opacity: 0;
-        transform:
-          translate(-50%, -50%)
-          translate3d(var(--tx), var(--ty), 0)
-          scale(1.3)
-          rotate(var(--rot));
-      }
-    }
-
-    @media (max-width: 900px) {
-      .story { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 720px) {
-      .shell { padding: 14px 10px 24px; }
-      .cover {
-        min-height: auto;
-        padding: 24px 16px;
-        border-radius: 30px;
-      }
-      .card {
-        padding: 18px;
-        border-radius: 30px;
-      }
-      .textCard,
-      .finalCopy { padding: 20px 18px; }
+    @media (max-width: 640px) {
+      .hero { min-height: auto; }
+      .card { padding: 18px; }
+      .text-block { padding: 20px; }
+      .nav { justify-content: center; }
+      .nav .left, .nav .right { justify-content: center; width: 100%; }
       .slides { min-height: 0; }
-      .topbar,
-      .nav,
-      .navGroup { justify-content: center; }
-      .navGroup { width: 100%; }
-      .finalStage { min-height: 560px; }
-      .cinemaGlow,
-      .finalAura,
-      .orb { opacity: .24; }
-      .titleLayer { font-size: clamp(2.25rem, 10vw, 3.8rem); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-
-      .finalCopy {
-        opacity: 1 !important;
-        transform: none !important;
-      }
+      .final-message { min-height: 430px; }
     }
   </style>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <div class="orb orb1" data-speed="0.020"></div>
-    <div class="orb orb2" data-speed="0.032"></div>
-    <div class="orb orb3" data-speed="0.014"></div>
-  </div>
-  <div class="vignette" aria-hidden="true"></div>
-
-  <div class="shell">
+  <div class="wrap">
     <section id="coverScreen" class="screen active">
-      <div class="cover glass">
-        <div class="cinemaGlow g1"></div>
-        <div class="cinemaGlow g2"></div>
-        <div class="cinemaGlow g3"></div>
-        <div class="filmShine"></div>
-
-        <div class="coverInner" data-parallax="0.045">
-          <div class="badge">💌 Uma surpresa especial</div>
-          <span class="trailerLine">uma história guardada em forma de carta</span>
-
-          <div class="titleStack">
-            <h1 class="titleLayer titleShadow">Uma surpresa para Seu Amor ❤️</h1>
-            <h1 class="titleLayer titleGlow">Uma surpresa para Seu Amor ❤️</h1>
-            <h1 class="titleLayer titleMain">Uma surpresa para Seu Amor ❤️</h1>
-          </div>
-
-          <p class="lead">
-            Nem sempre o coração consegue explicar tudo em voz alta.
-            Às vezes, ele escolhe o silêncio, o olhar, o carinho… e às vezes escolhe
-            uma carta, para dizer com calma o quanto alguém se tornou especial.
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="eyebrow">💌 Uma surpresa especial</div>
+          <h1>Uma surpresa para Seu Amor ❤️</h1>
+          <p>
+            Tem uma carta esperando para ser aberta, guardando um pedacinho bonito
+            do que eu sinto por você.
           </p>
-
-          <div class="miniLine"></div>
-          <div class="tapHint">Para Seu Amor — toque para abrir ✨</div>
-
-          <div class="actions">
-            <button class="primary" id="openLetterBtn">Abrir carta</button>
+          <div class="tap-hint">Para Seu Amor — toque para abrir ✨</div>
+          <div class="btn-row">
+            <button class="btn-primary" id="openLetterBtn">Abrir carta</button>
           </div>
         </div>
       </div>
@@ -871,337 +399,247 @@
 
     <section id="letterScreen" class="screen">
       <div class="topbar">
-        <div class="badge">De Seu Nome para Seu Amor ✨</div>
+        <div class="signature">De Seu Nome para Seu Amor ✨</div>
         <div class="progress" id="progressText">Página 1 de 5</div>
       </div>
 
-      <div class="card glass">
-        <div class="cardHeader">
-          <h2>Algumas lembranças, sentimentos e pequenos instantes</h2>
-          <p class="subtitle">
-            Certas pessoas chegam devagar e, quando a gente percebe, já deixaram
-            a alma inteira mais leve, mais bonita e mais feliz.
-          </p>
-          <div class="ornament">✦</div>
-        </div>
+      <div class="card">
+        <h2>Algumas lembranças, sentimentos e pequenos instantes</h2>
+        <p class="subtitle">
+          Tudo isso merecia um lugar bonito só para nós.
+        </p>
 
         <div class="slides">
           <article class="slide active">
-            <div class="story">
-              <div class="frame" data-parallax="0.030">
-                <img class="photo" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80" alt="Primeira foto do casal" />
-              </div>
-              <div class="textCard" data-parallax="0.016">
-                <span class="sectionKicker">Capítulo 1</span>
+            <div class="media">
+              <img class="photo" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80" alt="Primeira foto do casal" />
+              <div class="text-block">
                 <h3>O começo de tudo</h3>
                 <p>
-                  Desde que você apareceu, os meus dias ganharam outro ritmo.
-                  Como se a vida, de repente, tivesse decidido ficar mais bonita,
-                  mais doce e cheia de pequenos motivos para sorrir.
+                  Desde que você apareceu, os meus dias ganharam mais cor, mais calma
+                  e um motivo bonito para sorrir.
                 </p>
               </div>
             </div>
           </article>
 
           <article class="slide">
-            <div class="story">
-              <div class="frame" data-parallax="0.030">
-                <img class="photo" src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?auto=format&fit=crop&w=900&q=80" alt="Segunda foto do casal" />
-              </div>
-              <div class="textCard" data-parallax="0.016">
-                <span class="sectionKicker">Capítulo 2</span>
+            <div class="media">
+              <img class="photo" src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?auto=format&fit=crop&w=900&q=80" alt="Segunda foto do casal" />
+              <div class="text-block">
                 <h3>Os detalhes que eu amo</h3>
                 <p>
-                  Eu gosto do seu jeito, da sua presença, da forma como você transforma
-                  o simples em especial. Tem algo em você que acalma, encanta
-                  e faz o coração querer ficar por perto.
+                  Eu gosto do seu jeito, da sua risada, da forma como você faz os momentos
+                  simples virarem lembranças especiais.
                 </p>
               </div>
             </div>
           </article>
 
           <article class="slide">
-            <div class="story">
-              <div class="frame" data-parallax="0.030">
-                <img class="photo" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Terceira foto do casal" />
-              </div>
-              <div class="textCard" data-parallax="0.016">
-                <span class="sectionKicker">Capítulo 3</span>
+            <div class="media">
+              <img class="photo" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Terceira foto do casal" />
+              <div class="text-block">
                 <h3>O que eu sinto</h3>
                 <p>
-                  O que eu sinto por você vai além de palavras bonitas.
-                  É admiração, carinho, paz e aquela sensação rara de encontrar
-                  alguém que faz o mundo parecer mais leve só por existir.
+                  Estar com você me faz sentir em paz. É como se o coração encontrasse
+                  o lugar certo para ficar.
                 </p>
               </div>
             </div>
           </article>
 
           <article class="slide">
-            <div class="story">
-              <div class="frame" data-parallax="0.030">
-                <img class="photo" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Quarta foto do casal" />
-              </div>
-              <div class="textCard" data-parallax="0.016">
-                <span class="sectionKicker">Capítulo 4</span>
+            <div class="media">
+              <img class="photo" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Quarta foto do casal" />
+              <div class="text-block">
                 <h3>O que eu desejo</h3>
                 <p>
-                  Eu desejo continuar colecionando memórias com você,
-                  guardando risos, abraços, conversas e todos os instantes
-                  que fazem esse sentimento crescer com delicadeza e verdade.
+                  Quero continuar colecionando memórias com você, celebrando cada fase
+                  e cuidando desse sentimento com todo carinho do mundo.
                 </p>
               </div>
             </div>
           </article>
 
           <article class="slide" id="finalSlide">
-            <div class="finalStage">
-              <div class="finalAura a1"></div>
-              <div class="finalAura a2"></div>
-              <div class="finalAura a3"></div>
-
-              <div class="explosionLayer" id="explosionLayer"></div>
-
-              <div class="finalCopy" id="finalCopy">
-                <div class="finalEmo">✨ Para guardar no coração</div>
+            <div class="final-message" id="finalMessage">
+              <div class="sparkle-layer" id="sparkleLayer"></div>
+              <div class="final-copy">
                 <h3>Mensagem final</h3>
                 <p>
-                  Se eu pudesse resumir tudo isso em uma única certeza,
-                  seria esta: você se tornou uma parte muito bonita da minha vida.
+                  Isso é só uma pequena forma de te lembrar que você é muito especial para mim.
+                  Em cada detalhe, em cada lembrança, em cada sentimento bonito… tem você.
                 </p>
                 <p>
-                  Obrigado por existir, por ser essa pessoa tão especial
-                  e por, mesmo sem perceber, iluminar os meus dias de um jeito
-                  que poucas coisas no mundo conseguem iluminar.
+                  Obrigado por existir, por ser essa pessoa incrível e por deixar a minha vida
+                  mais leve, mais doce e mais feliz.
                 </p>
-                <p>
-                  E se algum dia você se perguntar o quanto é importante,
-                  lembre-se: há alguém aqui que olha para você com carinho,
-                  admiração e um sentimento sincero que só cresce.
-                </p>
-                <div class="finalSign">Com todo o meu amor, Seu Nome</div>
+                <div class="final-sign">Com amor, Seu Nome</div>
               </div>
             </div>
           </article>
         </div>
 
         <div class="nav">
-          <div class="navGroup">
-            <button class="secondary" id="prevBtn">Voltar</button>
-            <button class="primary" id="nextBtn">Próximo</button>
+          <div class="left">
+            <button class="btn-secondary" id="prevBtn">Voltar</button>
+            <button class="btn-primary" id="nextBtn">Próximo</button>
           </div>
-          <div class="navGroup">
-            <button class="premiumMusic" id="musicBtn">♪ Tocar trilha</button>
-            <button class="ghost" id="restartMusicBtn">Recomeçar música</button>
+          <div class="right">
+            <button class="btn-secondary" id="musicBtn">Tocar música</button>
+            <button class="btn-ghost" id="restartMusicBtn">Recomeçar música</button>
           </div>
         </div>
 
-        <p class="footerNote">Coloque seu arquivo em <strong>myamor.mp3</strong>.</p>
+        <p class="footer-note">Coloque seu arquivo em <strong>myamor.mp3</strong>.</p>
       </div>
     </section>
   </div>
 
-  <audio id="bgMusic" loop preload="none">
+  <audio id="bgMusic" loop>
     <source src="myamor.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
-    (() => {
-      const $ = (s) => document.querySelector(s);
-      const $$ = (s) => [...document.querySelectorAll(s)];
+    const coverScreen = document.getElementById('coverScreen');
+    const letterScreen = document.getElementById('letterScreen');
+    const openLetterBtn = document.getElementById('openLetterBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const restartMusicBtn = document.getElementById('restartMusicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progressText = document.getElementById('progressText');
+    const sparkleLayer = document.getElementById('sparkleLayer');
 
-      const screens = $$(".screen");
-      const slides = $$(".slide");
-      const progress = $("#progressText");
-      const prev = $("#prevBtn");
-      const next = $("#nextBtn");
-      const music = $("#musicBtn");
-      const restart = $("#restartMusicBtn");
-      const open = $("#openLetterBtn");
-      const audio = $("#bgMusic");
-      const explosionLayer = $("#explosionLayer");
-      const finalCopy = $("#finalCopy");
-      const parallaxEls = $$("[data-parallax]");
-      const ambientOrbs = $$(".ambient .orb");
+    let currentSlide = 0;
+    let sparkleTimeout = null;
+    let sparkleClearTimeout = null;
 
-      const FINAL = slides.length - 1;
-      const EXPLOSION_TIME = 3000;
-      const PARTICLES = 60;
-      const SYMBOLS = [
-        ["❤", "heart"],
-        ["💖", "heart"],
-        ["✨", "star"],
-        ["⭐", "star"],
-        ["✦", "star"],
-        ["💫", "star"]
+    function showScreen(screenToShow) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      screenToShow.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentSlide);
+      });
+
+      progressText.textContent = `Página ${currentSlide + 1} de ${slides.length}`;
+      prevBtn.disabled = currentSlide === 0;
+      prevBtn.style.opacity = currentSlide === 0 ? '0.55' : '1';
+
+      nextBtn.textContent = currentSlide === slides.length - 1 ? 'Recomeçar' : 'Próximo';
+
+      if (currentSlide === slides.length - 1) {
+        triggerFinalSparkles();
+      } else {
+        stopFinalSparkles();
+      }
+    }
+
+    function createSparkles() {
+      sparkleLayer.innerHTML = '';
+      const pieces = [
+        { char: '❤', className: 'heart' },
+        { char: '✨', className: 'star' },
+        { char: '⭐', className: 'star' },
+        { char: '💖', className: 'heart' },
+        { char: '✦', className: 'star' }
       ];
 
-      let current = 0;
-      let finalTimer = 0;
-      let lastX = window.innerWidth / 2;
-      let lastY = window.innerHeight / 2;
-      let ticking = false;
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
-      const resetTimer = (id) => (id && clearTimeout(id), 0);
-
-      function updateUI() {
-        progress.textContent = `Página ${current + 1} de ${slides.length}`;
-        prev.disabled = current === 0;
-        next.textContent = current === FINAL ? "Recomeçar" : "Próximo";
+      const total = 24;
+      for (let i = 0; i < total; i += 1) {
+        const piece = pieces[Math.floor(Math.random() * pieces.length)];
+        const el = document.createElement('span');
+        el.className = `sparkle ${piece.className}`;
+        el.textContent = piece.char;
+        el.style.left = `${8 + Math.random() * 84}%`;
+        el.style.top = `${10 + Math.random() * 78}%`;
+        el.style.fontSize = `${18 + Math.random() * 34}px`;
+        el.style.animationDelay = `${Math.random() * 0.9}s`;
+        el.style.transform = `translate(${(Math.random() - 0.5) * 24}px, ${(Math.random() - 0.5) * 24}px)`;
+        sparkleLayer.appendChild(el);
       }
+    }
 
-      function clearFinalEffects() {
-        finalTimer = resetTimer(finalTimer);
-        explosionLayer.replaceChildren();
-        finalCopy.classList.remove("reveal");
+    function triggerFinalSparkles() {
+      clearTimeout(sparkleTimeout);
+      clearTimeout(sparkleClearTimeout);
+      createSparkles();
+      sparkleLayer.classList.add('show');
+
+      sparkleTimeout = setTimeout(() => {
+        sparkleLayer.classList.remove('show');
+      }, 3000);
+
+      sparkleClearTimeout = setTimeout(() => {
+        sparkleLayer.innerHTML = '';
+      }, 3400);
+    }
+
+    function stopFinalSparkles() {
+      clearTimeout(sparkleTimeout);
+      clearTimeout(sparkleClearTimeout);
+      sparkleLayer.classList.remove('show');
+      sparkleLayer.innerHTML = '';
+    }
+
+    openLetterBtn.addEventListener('click', async () => {
+      showScreen(letterScreen);
+      updateSlide(0);
+      try {
+        await bgMusic.play();
+        musicBtn.textContent = 'Música tocando';
+      } catch (error) {
+        musicBtn.textContent = 'Tocar música';
       }
+    });
 
-      function createExplosion() {
-        const frag = document.createDocumentFragment();
+    prevBtn.addEventListener('click', () => {
+      updateSlide(currentSlide - 1);
+    });
 
-        for (let i = 0; i < PARTICLES; i++) {
-          const [char, type] = SYMBOLS[(Math.random() * SYMBOLS.length) | 0];
-          const el = document.createElement("span");
-          const angle = Math.random() * Math.PI * 2;
-          const distance = 95 + Math.random() * 265;
-          const tx = Math.cos(angle) * distance;
-          const ty = Math.sin(angle) * distance;
-          const rot = (-220 + Math.random() * 440).toFixed(0) + "deg";
-
-          el.className = `explosionParticle ${type}`;
-          el.textContent = char;
-          el.style.fontSize = `${18 + Math.random() * 48}px`;
-          el.style.animationDelay = `${(Math.random() * 0.28).toFixed(2)}s`;
-          el.style.setProperty("--tx", `${tx.toFixed(1)}px`);
-          el.style.setProperty("--ty", `${ty.toFixed(1)}px`);
-          el.style.setProperty("--rot", rot);
-
-          frag.appendChild(el);
-        }
-
-        explosionLayer.replaceChildren(frag);
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide === slides.length - 1) {
+        updateSlide(0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
       }
+      updateSlide(currentSlide + 1);
+    });
 
-      function playFinalSequence() {
-        clearFinalEffects();
-        createExplosion();
-
-        finalTimer = setTimeout(() => {
-          finalCopy.classList.add("reveal");
-        }, EXPLOSION_TIME);
-      }
-
-      function render(index) {
-        const target = clamp(index, 0, FINAL);
-
-        if (target !== current) {
-          slides[current].classList.remove("active");
-          current = target;
-          slides[current].classList.add("active");
-        }
-
-        updateUI();
-
-        if (current === FINAL) {
-          playFinalSequence();
-        } else {
-          clearFinalEffects();
-        }
-      }
-
-      function showScreen(target) {
-        screens.forEach((screen) => {
-          screen.classList.toggle("active", screen === target);
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      async function playAudio() {
+    musicBtn.addEventListener('click', async () => {
+      if (bgMusic.paused) {
         try {
-          await audio.play();
-          music.textContent = "♪ Pausar trilha";
-          return true;
-        } catch {
-          music.textContent = "♪ Tocar trilha";
-          return false;
+          await bgMusic.play();
+          musicBtn.textContent = 'Pausar música';
+        } catch (error) {
+          musicBtn.textContent = 'Tocar música';
         }
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = 'Tocar música';
       }
+    });
 
-      function applyParallax(x, y) {
-        if (reducedMotion) return;
-
-        const nx = (x / window.innerWidth - 0.5) * 2;
-        const ny = (y / window.innerHeight - 0.5) * 2;
-
-        parallaxEls.forEach((el) => {
-          const factor = parseFloat(el.dataset.parallax || "0.02");
-          const tx = nx * 24 * (factor * 10);
-          const ty = ny * 18 * (factor * 10);
-          el.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
-        });
-
-        ambientOrbs.forEach((orb) => {
-          const speed = parseFloat(orb.dataset.speed || "0.02");
-          const tx = nx * 120 * speed * 10;
-          const ty = ny * 90 * speed * 10;
-          orb.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
-        });
+    restartMusicBtn.addEventListener('click', async () => {
+      bgMusic.currentTime = 0;
+      try {
+        await bgMusic.play();
+        musicBtn.textContent = 'Pausar música';
+      } catch (error) {
+        musicBtn.textContent = 'Tocar música';
       }
+    });
 
-      function onPointerMove(x, y) {
-        lastX = x;
-        lastY = y;
-
-        if (ticking) return;
-        ticking = true;
-
-        requestAnimationFrame(() => {
-          applyParallax(lastX, lastY);
-          ticking = false;
-        });
-      }
-
-      open.addEventListener("click", async () => {
-        showScreen($("#letterScreen"));
-        render(0);
-        await playAudio();
-      });
-
-      prev.addEventListener("click", () => {
-        if (current > 0) render(current - 1);
-      });
-
-      next.addEventListener("click", () => {
-        if (current === FINAL) {
-          render(0);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          return;
-        }
-        render(current + 1);
-      });
-
-      music.addEventListener("click", async () => {
-        if (audio.paused) return playAudio();
-        audio.pause();
-        music.textContent = "♪ Tocar trilha";
-      });
-
-      restart.addEventListener("click", async () => {
-        audio.currentTime = 0;
-        await playAudio();
-      });
-
-      window.addEventListener("mousemove", (e) => onPointerMove(e.clientX, e.clientY), { passive: true });
-      window.addEventListener("touchmove", (e) => {
-        const touch = e.touches[0];
-        if (touch) onPointerMove(touch.clientX, touch.clientY);
-      }, { passive: true });
-
-      render(0);
-      applyParallax(window.innerWidth / 2, window.innerHeight / 2);
-    })();
+    updateSlide(0);
   </script>
 </body>
 </html>
