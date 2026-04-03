@@ -387,22 +387,6 @@
       50% { transform: scale(1.06); }
     }
 
-    .final-card {
-      margin-top: 24px;
-      padding: 28px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,243,247,.98));
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: 0 14px 36px rgba(126, 56, 82, 0.08);
-    }
-
-    .signature {
-      margin-top: 18px;
-      font-style: italic;
-      color: var(--rose-dark);
-      font-size: 1.08rem;
-    }
-
     .tip {
       margin-top: 12px;
       font-size: .93rem;
@@ -411,8 +395,8 @@
 
     .typewriter-box {
       display: none;
-      min-height: 520px;
-      padding: 36px 28px;
+      min-height: 560px;
+      padding: 34px 26px;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -431,11 +415,11 @@
     .typewriter-title {
       color: var(--rose-dark);
       font-size: 2rem;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .typewriter-text {
-      font-size: 1.28rem;
+      font-size: 1.24rem;
       line-height: 1.95;
       white-space: pre-line;
     }
@@ -464,17 +448,16 @@
       .envelope.open .letter { transform: translateY(-90px); }
       .slider { min-height: 500px; }
       .photo { height: 260px; }
-      .final-card { padding: 22px; }
       .typewriter-box {
         min-height: 500px;
-        padding: 28px 20px;
+        padding: 24px 18px;
       }
       .typewriter-title {
         font-size: 1.65rem;
       }
       .typewriter-text {
-        font-size: 1.08rem;
-        line-height: 1.8;
+        font-size: 1.06rem;
+        line-height: 1.82;
       }
     }
   </style>
@@ -646,10 +629,10 @@ Com amor, Thiago Oliveira`;
       const textEl = document.getElementById('typewriterText');
 
       box.classList.add('show');
-      typeText(textEl, finalMessage, 38);
+      typeText(textEl, finalMessage, 42);
     }
 
-    function typeText(element, text, speed = 38) {
+    function typeText(element, text, speed = 42) {
       clearInterval(typeInterval);
       let i = 0;
       element.innerHTML = '<span class="type-cursor">|</span>';
