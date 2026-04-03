@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>❤️Uma Carta Para Você❤️</title>
+  <title>❤️ Uma Carta Para Você ❤️</title>
   <style>
     * { box-sizing: border-box; }
+
     :root {
       --bg1: #fff5f8;
       --bg2: #ffe7ef;
       --rose: #d85b86;
       --rose-dark: #a73b61;
-      --gold: #f5d7a1;
       --text: #442634;
       --white: #ffffff;
-      --soft: rgba(255,255,255,0.72);
     }
+
     body {
       margin: 0;
       font-family: "Georgia", "Times New Roman", serif;
@@ -26,6 +26,7 @@
         linear-gradient(180deg, var(--bg1), var(--bg2));
       overflow-x: hidden;
     }
+
     .floating {
       position: fixed;
       inset: 0;
@@ -33,6 +34,7 @@
       overflow: hidden;
       z-index: 0;
     }
+
     .float-item {
       position: absolute;
       bottom: -50px;
@@ -40,11 +42,41 @@
       animation: rise linear infinite;
       filter: blur(.1px);
     }
+
     @keyframes rise {
       0% { transform: translateY(0) scale(.8) rotate(0deg); opacity: 0; }
       15% { opacity: .7; }
       100% { transform: translateY(-120vh) scale(1.2) rotate(18deg); opacity: 0; }
     }
+
+    .burst {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 8;
+      overflow: hidden;
+    }
+
+    .burst-heart {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      font-size: 20px;
+      opacity: 0;
+      animation: burstFly 1.8s ease-out forwards;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 6px 12px rgba(216,91,134,0.18));
+    }
+
+    @keyframes burstFly {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(.3); }
+      12% { opacity: 1; }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.25) rotate(var(--r));
+      }
+    }
+
     .wrap {
       position: relative;
       z-index: 1;
@@ -54,13 +86,17 @@
       justify-content: center;
       padding: 20px;
     }
+
     .glass::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(255,255,255,0.42), transparent 26%), radial-gradient(circle at bottom left, rgba(216,91,134,0.08), transparent 28%);
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.42), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(216,91,134,0.08), transparent 28%);
       pointer-events: none;
     }
+
     .glass {
       width: 100%;
       max-width: 920px;
@@ -74,20 +110,25 @@
       position: relative;
       overflow: hidden;
     }
+
     h1, h2, h3 {
       margin: 0;
       font-weight: 600;
     }
+
     h1 { font-size: 2.4rem; }
     h2 { font-size: 1.8rem; }
+
     p {
       line-height: 1.7;
       font-size: 1rem;
     }
+
     .subtitle {
       margin-top: 12px;
       opacity: .86;
     }
+
     .btn {
       border: 0;
       border-radius: 999px;
@@ -101,10 +142,12 @@
       font-family: inherit;
       letter-spacing: .2px;
     }
+
     .btn:hover {
       transform: translateY(-2px) scale(1.01);
       box-shadow: 0 18px 34px rgba(168, 52, 95, 0.24);
     }
+
     .hidden { display: none !important; }
 
     .cover {
@@ -115,6 +158,8 @@
       align-items: center;
       gap: 18px;
       animation: fadeUp 1s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .envelope-area {
@@ -124,6 +169,7 @@
       margin: 8px 0 14px;
       min-height: 280px;
     }
+
     .envelope {
       width: 300px;
       height: 205px;
@@ -132,18 +178,21 @@
       transform-style: preserve-3d;
       perspective: 1000px;
     }
+
     .envelope-back, .envelope-front, .letter, .flap {
       position: absolute;
       left: 0;
       width: 100%;
       border-radius: 12px;
     }
+
     .envelope-back {
       height: 100%;
       background: linear-gradient(180deg, #f9d7e4, #f3bfd1);
       box-shadow: 0 20px 40px rgba(145, 55, 88, 0.18);
       overflow: hidden;
     }
+
     .flap {
       top: 0;
       height: 150px;
@@ -153,6 +202,7 @@
       transition: transform 1s ease;
       z-index: 4;
     }
+
     .letter {
       width: 86%;
       left: 7%;
@@ -169,8 +219,10 @@
       justify-content: center;
       align-items: center;
     }
+
     .letter strong { font-size: 1.25rem; }
     .letter small { margin-top: 8px; opacity: .75; }
+
     .envelope-front {
       bottom: 0;
       height: 110px;
@@ -178,9 +230,11 @@
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       z-index: 5;
     }
+
     .envelope.open .flap {
       transform: rotateX(180deg);
     }
+
     .envelope.open .letter {
       transform: translateY(-105px);
     }
@@ -188,9 +242,12 @@
     .experience {
       animation: fadeUp 1s ease;
     }
+
     .story-title {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      letter-spacing: .2px;
     }
+
     .slider {
       position: relative;
       overflow: hidden;
@@ -201,12 +258,15 @@
       min-height: 560px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 18px 50px rgba(126, 56, 82, 0.08);
     }
+
     .slide {
       display: none;
       padding: 20px;
       animation: fadeUp .8s ease;
     }
+
     .slide.active { display: block; }
+
     .photo-frame {
       padding: 12px;
       background: linear-gradient(180deg, #fff, #fff8fb);
@@ -215,6 +275,7 @@
       margin-bottom: 18px;
       border: 1px solid rgba(244, 218, 228, 0.9);
     }
+
     .photo {
       display: block;
       width: 100%;
@@ -223,15 +284,20 @@
       border-radius: 20px;
       background: #f7dfe7;
     }
+
     .slide h3 {
       margin: 8px 0 12px;
       color: var(--rose-dark);
       font-size: 1.45rem;
     }
+
     .caption {
       font-size: 1.08rem;
-      padding: 0 8px 8px;
+      padding: 0 12px 10px;
+      max-width: 680px;
+      margin: 0 auto;
     }
+
     .controls {
       display: flex;
       justify-content: center;
@@ -239,12 +305,14 @@
       flex-wrap: wrap;
       margin-top: 18px;
     }
+
     .dots {
       display: flex;
       justify-content: center;
       gap: 9px;
       margin-top: 14px;
     }
+
     .dot {
       width: 11px;
       height: 11px;
@@ -252,39 +320,12 @@
       background: #edb5c8;
       transition: transform .2s ease;
     }
+
     .dot.active {
       background: var(--rose);
       transform: scale(1.15);
     }
-     .story-title {
-      margin-bottom: 10px;
-      letter-spacing: .2px;
-    }
-    .caption {
-      font-size: 1.08rem;
-      padding: 0 12px 10px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .final-card {
-      margin-top: 24px;
-      padding: 28px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,243,247,.98));
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: 0 14px 36px rgba(126, 56, 82, 0.08);
-    }
-    .signature {
-      margin-top: 18px;
-      font-style: italic;
-      color: var(--rose-dark);
-      font-size: 1.08rem;
-    }
-    .tip {
-      margin-top: 12px;
-      font-size: .93rem;
-      opacity: .78;
-    }
+
     .music-controls {
       display: flex;
       justify-content: center;
@@ -292,6 +333,7 @@
       flex-wrap: wrap;
       margin-top: 18px;
     }
+
     .music-btn {
       border: 1px solid rgba(216,91,134,0.18);
       border-radius: 999px;
@@ -304,16 +346,19 @@
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
       font-family: inherit;
     }
+
     .music-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 24px rgba(126, 56, 82, 0.10);
       background: rgba(255,255,255,0.96);
     }
+
     .music-note {
       margin-top: 12px;
       font-size: .92rem;
       opacity: .72;
     }
+
     .floating-music {
       position: fixed;
       right: 18px;
@@ -333,43 +378,48 @@
       color: var(--rose-dark);
       transition: transform .2s ease, box-shadow .2s ease;
     }
+
     .floating-music:hover {
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 18px 36px rgba(126,56,82,0.2);
     }
+
     .floating-music.is-playing {
       animation: pulseMusic 2s ease-in-out infinite;
     }
+
     @keyframes pulseMusic {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.06); }
     }
-    .burst {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 8;
-      overflow: hidden;
+
+    .final-card {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,243,247,.98));
+      border: 1px solid rgba(255,255,255,.8);
+      box-shadow: 0 14px 36px rgba(126, 56, 82, 0.08);
     }
-    .burst-heart {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      font-size: 20px;
-      opacity: 0;
-      animation: burstFly 1.8s ease-out forwards;
-      transform: translate(-50%, -50%);
-      filter: drop-shadow(0 6px 12px rgba(216,91,134,0.18));
+
+    .signature {
+      margin-top: 18px;
+      font-style: italic;
+      color: var(--rose-dark);
+      font-size: 1.08rem;
     }
-    @keyframes burstFly {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(.3); }
-      12% { opacity: 1; }
-      100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.25) rotate(var(--r)); }
+
+    .tip {
+      margin-top: 12px;
+      font-size: .93rem;
+      opacity: .78;
     }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @media (max-width: 700px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.55rem; }
@@ -378,12 +428,14 @@
       .envelope.open .letter { transform: translateY(-90px); }
       .slider { min-height: 500px; }
       .photo { height: 260px; }
+      .final-card { padding: 22px; }
     }
   </style>
 </head>
 <body>
   <div class="floating" id="floating"></div>
   <div class="burst" id="burst"></div>
+
   <audio id="bgMusic" preload="auto"></audio>
   <button class="floating-music" id="floatingMusicBtn" onclick="toggleMusic()" aria-label="Controlar música">🎵</button>
 
@@ -391,7 +443,7 @@
     <section class="glass">
       <div class="cover" id="cover">
         <div>
-          <h1>Uma surpresa para <span id="personName">Seu Amor</span> ❤️</h1>
+          <h1>Uma surpresa para <span id="personName">Esthéfany Xavier</span> ❤️</h1>
           <p class="subtitle">
             Tem uma carta esperando para ser aberta, guardando um pedacinho bonito do que eu sinto por você.
           </p>
@@ -402,7 +454,7 @@
             <div class="envelope-back"></div>
             <div class="flap"></div>
             <div class="letter">
-              <strong>Para <span id="letterTo">Seu Amor</span></strong>
+              <strong>Para <span id="letterTo">Esthéfany Xavier</span></strong>
               <small>Toque para abrir</small>
             </div>
             <div class="envelope-front"></div>
@@ -414,7 +466,7 @@
       </div>
 
       <div class="experience hidden" id="experience">
-        <h2 class="story-title">De <span id="fromName">Seu Nome</span> para <span id="toName">Seu Amor</span> ✨</h2>
+        <h2 class="story-title">De <span id="fromName">Thiago Oliveira</span> para <span id="toName">Esthéfany Xavier</span> ✨</h2>
         <p>
           Algumas lembranças, sentimentos e pequenos instantes que mereciam um lugar bonito só para nós.
         </p>
@@ -422,7 +474,7 @@
         <div class="slider">
           <div class="slide active">
             <div class="photo-frame">
-              <img class="photo" src="foto1.jpeg" alt="Primeira foto do casal" style="object-position: center top;">
+              <img class="photo" src="foto1.jpg" alt="Primeira foto do casal" style="object-position: center top;">
             </div>
             <h3>O começo de tudo</h3>
             <div class="caption">
@@ -432,7 +484,7 @@
 
           <div class="slide">
             <div class="photo-frame">
-              <img class="photo" src="foto2.jpeg" alt="Segunda foto do casal">
+              <img class="photo" src="foto2.jpg" alt="Segunda foto do casal">
             </div>
             <h3>Os detalhes que eu amo</h3>
             <div class="caption">
@@ -442,7 +494,7 @@
 
           <div class="slide">
             <div class="photo-frame">
-              <img class="photo" src="foto3.jpeg" alt="Terceira foto do casal">
+              <img class="photo" src="foto3.jpg" alt="Terceira foto do casal">
             </div>
             <h3>O que eu sinto</h3>
             <div class="caption">
@@ -452,7 +504,7 @@
 
           <div class="slide">
             <div class="photo-frame">
-              <img class="photo" src="foto4.jpeg" alt="Quarta foto do casal">
+              <img class="photo" src="foto4.jpg" alt="Quarta foto do casal">
             </div>
             <h3>O que eu desejo</h3>
             <div class="caption">
@@ -472,6 +524,7 @@
           <button class="music-btn" onclick="toggleMusic()" id="musicToggleBtn">Tocar música</button>
           <button class="music-btn" onclick="restartMusic()">Recomeçar música</button>
         </div>
+
         <div class="music-note">Coloque seu arquivo em <strong>myamor.mp3</strong>.</div>
 
         <div class="final-card">
@@ -484,7 +537,7 @@
             Obrigado por existir, por ser essa pessoa incrível e por deixar a minha vida mais leve, mais doce e mais feliz.
           </p>
           <div class="signature">
-            Com amor, <span id="signatureName">Seu Nome</span>
+            Com amor, <span id="signatureName">Thiago Oliveira</span>
           </div>
         </div>
       </div>
@@ -521,17 +574,19 @@
       renderSlides();
     }
 
-    function openLetter() {
-      if (started) return;
-      started = true;
-      document.getElementById('envelope').classList.add('open');
-      createHeartBurst();
-      startMusic(true);
-      setTimeout(() => {
-        document.getElementById('cover').classList.add('hidden');
-        document.getElementById('experience').classList.remove('hidden');
-        autoSlide = setInterval(nextSlide, 5200);
-      }, 1300);
+    function createHeartBurst() {
+      const burst = document.getElementById('burst');
+      for (let i = 0; i < 26; i++) {
+        const el = document.createElement('div');
+        el.className = 'burst-heart';
+        el.textContent = Math.random() > 0.18 ? '❤' : '✦';
+        el.style.setProperty('--x', ((Math.random() * 320) - 160) + 'px');
+        el.style.setProperty('--y', ((Math.random() * 240) - 180) + 'px');
+        el.style.setProperty('--r', ((Math.random() * 80) - 40) + 'deg');
+        el.style.fontSize = (14 + Math.random() * 18) + 'px';
+        burst.appendChild(el);
+        setTimeout(() => el.remove(), 1900);
+      }
     }
 
     function loadTrack() {
@@ -548,6 +603,7 @@
       const steps = 18;
       const stepTime = Math.floor(duration / steps);
       const increment = (targetVolume - music.volume) / steps;
+
       fadeInterval = setInterval(() => {
         const nextVolume = Math.min(targetVolume, music.volume + increment);
         music.volume = Number(nextVolume.toFixed(3));
@@ -560,7 +616,9 @@
     function startMusic(forcePlay = false) {
       const music = document.getElementById('bgMusic');
       if (!music.src) loadTrack();
+
       const playPromise = music.play();
+
       if (playPromise && typeof playPromise.then === 'function') {
         playPromise.then(() => {
           musicStarted = true;
@@ -581,6 +639,7 @@
     function toggleMusic() {
       const music = document.getElementById('bgMusic');
       if (!music.src) loadTrack();
+
       if (music.paused) {
         startMusic(true);
       } else {
@@ -597,32 +656,30 @@
       startMusic(true);
     }
 
-    
-
     function updateMusicButton(forcedLabel) {
       const music = document.getElementById('bgMusic');
       const btn = document.getElementById('musicToggleBtn');
       const floatingBtn = document.getElementById('floatingMusicBtn');
       const label = forcedLabel || (music.paused ? 'Tocar música' : 'Pausar música');
+
       btn.textContent = label;
       floatingBtn.classList.toggle('is-playing', !music.paused);
       floatingBtn.textContent = music.paused ? '🎵' : '🎶';
       floatingBtn.setAttribute('aria-label', label);
     }
 
-    function createHeartBurst() {
-      const burst = document.getElementById('burst');
-      for (let i = 0; i < 26; i++) {
-        const el = document.createElement('div');
-        el.className = 'burst-heart';
-        el.textContent = Math.random() > 0.18 ? '❤' : '✦';
-        el.style.setProperty('--x', ((Math.random() * 320) - 160) + 'px');
-        el.style.setProperty('--y', ((Math.random() * 240) - 180) + 'px');
-        el.style.setProperty('--r', ((Math.random() * 80) - 40) + 'deg');
-        el.style.fontSize = (14 + Math.random() * 18) + 'px';
-        burst.appendChild(el);
-        setTimeout(() => el.remove(), 1900);
-      }
+    function openLetter() {
+      if (started) return;
+      started = true;
+      document.getElementById('envelope').classList.add('open');
+      createHeartBurst();
+      startMusic(true);
+
+      setTimeout(() => {
+        document.getElementById('cover').classList.add('hidden');
+        document.getElementById('experience').classList.remove('hidden');
+        autoSlide = setInterval(nextSlide, 5200);
+      }, 1300);
     }
 
     const floating = document.getElementById('floating');
@@ -637,14 +694,11 @@
       floating.appendChild(el);
     }
 
-    // PERSONALIZAÇÃO RÁPIDA:
-    // Troque estes valores pelos nomes de vocês.
-    const from = 'Seu Nome';
-    const to = 'Seu Amor';
-    // Coloque sua música em:
-    // myamor.mp3
+    const from = 'Thiago Oliveira';
+    const to = 'Esthéfany Xavier';
 
     loadTrack();
+
     const musicElement = document.getElementById('bgMusic');
     musicElement.addEventListener('pause', () => updateMusicButton());
     musicElement.addEventListener('play', () => updateMusicButton());
