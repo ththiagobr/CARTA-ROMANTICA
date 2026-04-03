@@ -353,12 +353,6 @@
       background: rgba(255,255,255,0.96);
     }
 
-    .music-note {
-      margin-top: 12px;
-      font-size: .92rem;
-      opacity: .72;
-    }
-
     .floating-music {
       position: fixed;
       right: 18px;
@@ -462,7 +456,7 @@
         </div>
 
         <button class="btn" onclick="openLetter()">Abrir carta</button>
-        <p class="tip">Você tem espaço exclusivo no meu coração</p>
+        <p class="tip">Troque os nomes, fotos, frases e a música direto no HTML.</p>
       </div>
 
       <div class="experience hidden" id="experience">
@@ -476,9 +470,9 @@
             <div class="photo-frame">
               <img class="photo" src="foto1.jpg" alt="Primeira foto do casal" style="object-position: center top;">
             </div>
-            <h3>Meu Amor</h3>
+            <h3>O começo de tudo</h3>
             <div class="caption">
-              Nem mesmo a mais longa distância será capaz de acabar com o nosso amor, pois o que foi construído em uma base sólida, não desmorona.
+              Desde que você apareceu, os meus dias ganharam mais cor, mais calma e um motivo bonito para sorrir.
             </div>
           </div>
 
@@ -488,7 +482,7 @@
             </div>
             <h3>Os detalhes que eu amo</h3>
             <div class="caption">
-              Me perdi no brilho do seu olhar e me encontrei no calor do seu coração.
+              Eu gosto do seu jeito, da sua risada, da forma como você faz os momentos simples virarem lembranças especiais.
             </div>
           </div>
 
@@ -525,8 +519,6 @@
           <button class="music-btn" onclick="restartMusic()">Recomeçar música</button>
         </div>
 
-        
-
         <div class="final-card">
           <h3>Mensagem final 💌</h3>
           <p>
@@ -550,7 +542,6 @@
     let current = 0;
     let autoSlide;
     let started = false;
-    let musicStarted = false;
     let fadeInterval = null;
 
     slides.forEach((_, index) => {
@@ -621,16 +612,12 @@
 
       if (playPromise && typeof playPromise.then === 'function') {
         playPromise.then(() => {
-          musicStarted = true;
           fadeInMusic();
           updateMusicButton();
         }).catch(() => {
-          if (forcePlay) {
-            updateMusicButton('Tocar música');
-          }
+          if (forcePlay) updateMusicButton('Tocar música');
         });
       } else {
-        musicStarted = true;
         fadeInMusic();
         updateMusicButton();
       }
