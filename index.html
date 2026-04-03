@@ -400,7 +400,6 @@
       justify-content: center;
       text-align: center;
       animation: fadeUp .8s ease;
-      position: relative;
     }
 
     .typewriter-box.show {
@@ -410,8 +409,6 @@
     .typewriter-content {
       max-width: 720px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
     }
 
     .typewriter-title {
@@ -430,33 +427,6 @@
       display: inline-block;
       margin-left: 3px;
       animation: blinkCursor .8s infinite;
-    }
-
-    .message-sparkles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      overflow: hidden;
-    }
-
-    .message-sparkle {
-      position: absolute;
-      opacity: 0;
-      animation: sparkleFlash 1s ease-in-out 3;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
-      text-shadow:
-        0 0 6px rgba(255,255,255,0.95),
-        0 0 14px rgba(255,215,235,0.95),
-        0 0 24px rgba(216,91,134,0.45);
-    }
-
-    @keyframes sparkleFlash {
-      0% { opacity: 0; transform: scale(.4) rotate(0deg); }
-      20% { opacity: 1; transform: scale(1.2) rotate(10deg); }
-      50% { opacity: .55; transform: scale(.9) rotate(-8deg); }
-      80% { opacity: 1; transform: scale(1.15) rotate(8deg); }
-      100% { opacity: 0; transform: scale(.55) rotate(0deg); }
     }
 
     @keyframes blinkCursor {
@@ -572,7 +542,6 @@
           </div>
 
           <div class="typewriter-box" id="typewriterBox">
-            <div class="message-sparkles" id="messageSparkles"></div>
             <div class="typewriter-content">
               <h3 class="typewriter-title">Mensagem final 💌</h3>
               <div class="typewriter-text" id="typewriterText"></div>
@@ -598,7 +567,7 @@
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
     const dotsWrap = document.getElementById('dots');
-    const photoSlides = slides.slice(0, 4);
+    const photoSlides = slides.filter(slide => !slide.id && !slide.classList.contains('typewriter-box'));
     const finalMessage = `Isso é só uma pequena forma de te lembrar que você é muito especial para mim.
 Em cada detalhe, em cada lembrança, em cada sentimento bonito… tem você.
 
@@ -664,44 +633,7 @@ Com amor, Thiago Oliveira`;
       const textEl = document.getElementById('typewriterText');
 
       box.classList.add('show');
-      triggerMessageSparkles();
       typeText(textEl, finalMessage, 42);
-    }
-
-    function triggerMessageSparkles() {
-      const layer = document.getElementById('messageSparkles');
-      layer.innerHTML = '';
-
-      const symbols = ['✨', '⭐', '❤', '💖', '✦', '💫'];
-      const positions = [
-        { left: '12%', top: '18%' },
-        { left: '24%', top: '32%' },
-        { left: '78%', top: '20%' },
-        { left: '68%', top: '34%' },
-        { left: '16%', top: '64%' },
-        { left: '30%', top: '78%' },
-        { left: '72%', top: '66%' },
-        { left: '84%', top: '76%' },
-        { left: '50%', top: '16%' },
-        { left: '52%', top: '82%' },
-        { left: '8%', top: '46%' },
-        { left: '90%', top: '48%' }
-      ];
-
-      positions.forEach((pos, index) => {
-        const el = document.createElement('div');
-        el.className = 'message-sparkle';
-        el.textContent = symbols[index % symbols.length];
-        el.style.left = pos.left;
-        el.style.top = pos.top;
-        el.style.fontSize = (18 + Math.random() * 18) + 'px';
-        el.style.animationDelay = (Math.random() * 0.25) + 's';
-        layer.appendChild(el);
-      });
-
-      setTimeout(() => {
-        layer.innerHTML = '';
-      }, 3000);
     }
 
     function typeText(element, text, speed = 42) {
