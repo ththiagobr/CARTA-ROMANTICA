@@ -6,24 +6,27 @@
   <title>❤️ Uma Carta Para Você ❤️</title>
   <style>
     :root {
-      --bg1: #fff7fb;
-      --bg2: #ffe6f0;
-      --bg3: #ffd8e8;
-      --card: rgba(255, 255, 255, 0.72);
-      --card-strong: rgba(255, 255, 255, 0.84);
-      --text: #5c2841;
-      --muted: #8a5f71;
-      --accent: #ff5b8f;
-      --accent-2: #ff86ac;
-      --accent-3: #ffd0df;
-      --gold: #ffe58e;
-      --shadow: 0 20px 60px rgba(180, 72, 114, 0.16);
-      --shadow-soft: 0 10px 28px rgba(180, 72, 114, 0.12);
-      --radius: 30px;
+      --bg1: #fff8fb;
+      --bg2: #ffeaf3;
+      --bg3: #ffd7e8;
+      --text: #55233c;
+      --muted: #8b6173;
+      --accent: #ff5b92;
+      --accent2: #ff85ae;
+      --accent3: #ffd3e2;
+      --gold: #ffe89d;
+      --glass: rgba(255, 255, 255, 0.68);
+      --glass-strong: rgba(255, 255, 255, 0.86);
+      --line: rgba(255, 255, 255, 0.58);
+      --shadow-sm: 0 12px 28px rgba(183, 80, 120, 0.10);
+      --shadow-md: 0 22px 56px rgba(183, 80, 120, 0.14);
+      --shadow-lg: 0 36px 120px rgba(183, 80, 120, 0.18);
+      --radius-xl: 44px;
+      --radius-lg: 34px;
       --radius-md: 24px;
-      --radius-sm: 18px;
-      --ease: 0.34s cubic-bezier(.2,.8,.2,1);
-      --maxw: 1040px;
+      --ease: .55s cubic-bezier(.22,.8,.22,1);
+      --ease-soft: .95s cubic-bezier(.2,.8,.2,1);
+      --maxw: 1200px;
     }
 
     *,
@@ -41,9 +44,10 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.95) 0%, var(--bg1) 30%, var(--bg2) 65%, var(--bg3) 100%);
+        radial-gradient(circle at top, rgba(255,255,255,.97) 0%, var(--bg1) 24%, var(--bg2) 60%, var(--bg3) 100%);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
     }
 
     body::before,
@@ -56,54 +60,111 @@
     }
 
     body::before {
-      opacity: .55;
+      opacity: .7;
       background:
-        radial-gradient(circle at 10% 12%, rgba(255,255,255,.95) 0 2px, transparent 3px),
-        radial-gradient(circle at 82% 18%, rgba(255,255,255,.7) 0 2px, transparent 3px),
-        radial-gradient(circle at 16% 80%, rgba(255,255,255,.55) 0 2px, transparent 3px),
-        radial-gradient(circle at 70% 74%, rgba(255,255,255,.65) 0 2px, transparent 3px),
-        radial-gradient(circle at 48% 28%, rgba(255,255,255,.4) 0 1px, transparent 2px);
+        radial-gradient(circle at 8% 14%, rgba(255,255,255,.96) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.78) 0 2px, transparent 3px),
+        radial-gradient(circle at 18% 84%, rgba(255,255,255,.52) 0 2px, transparent 3px),
+        radial-gradient(circle at 76% 72%, rgba(255,255,255,.60) 0 2px, transparent 3px),
+        radial-gradient(circle at 48% 24%, rgba(255,255,255,.35) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 88%, rgba(255,255,255,.30) 0 1px, transparent 2px);
     }
 
     body::after {
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.42), transparent 20%),
-        radial-gradient(circle at 80% 0%, rgba(255,255,255,.22), transparent 25%),
-        radial-gradient(circle at 50% 100%, rgba(255,255,255,.12), transparent 26%);
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.28), transparent 22%),
+        radial-gradient(circle at 92% 8%, rgba(255,255,255,.15), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,.12), transparent 30%);
     }
 
-    .page {
-      position: relative;
+    .vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       z-index: 1;
+      background:
+        radial-gradient(circle at center, transparent 48%, rgba(93, 28, 57, 0.08) 78%, rgba(34, 7, 21, 0.16) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(64px);
+      opacity: .28;
+      will-change: transform;
+    }
+
+    .orb1 {
+      width: 460px;
+      height: 460px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(255, 150, 190, .96), transparent 68%);
+    }
+
+    .orb2 {
+      width: 480px;
+      height: 480px;
+      left: -120px;
+      bottom: -140px;
+      background: radial-gradient(circle, rgba(255, 227, 236, .96), transparent 70%);
+    }
+
+    .orb3 {
+      width: 280px;
+      height: 280px;
+      left: 50%;
+      top: 26%;
+      transform: translateX(-50%);
+      opacity: .18;
+      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
+    }
+
+    .shell {
+      position: relative;
+      z-index: 2;
       width: min(100%, var(--maxw));
       margin: 0 auto;
-      padding: 26px 16px 42px;
+      padding: 18px 14px 34px;
     }
 
     .screen {
       display: none;
-      animation: fade .9s ease;
+      opacity: 0;
+      transform: translateY(16px) scale(.995);
+      transition: opacity .8s ease, transform 1s var(--ease);
     }
 
     .screen.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.68));
-      border: 1px solid rgba(255,255,255,.66);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.66));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-lg);
     }
 
     .cover {
       position: relative;
-      min-height: calc(100vh - 52px);
+      min-height: calc(100vh - 36px);
       display: grid;
       place-items: center;
-      padding: 28px;
-      border-radius: 36px;
+      padding: 42px 28px;
+      border-radius: var(--radius-xl);
       overflow: hidden;
       isolation: isolate;
       contain: layout paint;
@@ -113,95 +174,162 @@
     .cover::after {
       content: "❤";
       position: absolute;
-      font-size: clamp(90px, 14vw, 150px);
-      color: rgba(255, 91, 143, 0.08);
-      animation: floatHeart 6s ease-in-out infinite;
+      font-size: clamp(120px, 14vw, 200px);
+      color: rgba(255, 91, 146, .08);
+      animation: floatHeart 7s ease-in-out infinite;
       will-change: transform;
     }
 
-    .cover::before {
-      top: 34px;
-      left: 30px;
-    }
+    .cover::before { top: 12px; left: 16px; }
+    .cover::after { right: 18px; bottom: 14px; animation-delay: 2.2s; }
 
-    .cover::after {
-      right: 34px;
-      bottom: 22px;
-      animation-delay: 2s;
-    }
-
-    .coverGlow {
+    .cinemaGlow {
       position: absolute;
-      inset: auto;
-      width: 360px;
-      height: 360px;
       border-radius: 999px;
-      filter: blur(48px);
-      opacity: .35;
+      filter: blur(68px);
       pointer-events: none;
-      background: radial-gradient(circle, rgba(255, 151, 186, .9), transparent 68%);
+      opacity: .34;
     }
 
-    .coverGlow.g1 { top: -80px; right: -60px; }
-    .coverGlow.g2 { bottom: -100px; left: -50px; background: radial-gradient(circle, rgba(255, 223, 233, .92), transparent 70%); }
+    .g1 {
+      width: 560px;
+      height: 560px;
+      top: -140px;
+      right: -90px;
+      background: radial-gradient(circle, rgba(255, 153, 191, .98), transparent 68%);
+    }
+
+    .g2 {
+      width: 500px;
+      height: 500px;
+      left: -90px;
+      bottom: -140px;
+      background: radial-gradient(circle, rgba(255, 229, 237, .98), transparent 70%);
+    }
+
+    .g3 {
+      width: 300px;
+      height: 300px;
+      left: 50%;
+      top: 24%;
+      transform: translateX(-50%);
+      opacity: .2;
+      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
+    }
+
+    .filmShine {
+      position: absolute;
+      inset: -20% auto -20% -30%;
+      width: 42%;
+      transform: skewX(-18deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+      filter: blur(10px);
+      animation: shineSweep 8s linear infinite;
+      pointer-events: none;
+      opacity: .5;
+    }
 
     .coverInner {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 930px;
       text-align: center;
+      will-change: transform;
     }
 
-    .pill {
+    .badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       padding: 11px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,.76);
+      background: rgba(255,255,255,.84);
       color: var(--accent);
       font-size: .98rem;
-      font-weight: 700;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .cover .pill {
+      font-weight: 800;
+      box-shadow: var(--shadow-sm);
       margin-bottom: 18px;
+      letter-spacing: .01em;
     }
 
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(2.25rem, 6vw, 4.3rem);
-      line-height: 1.04;
-      letter-spacing: -0.02em;
+    .trailerLine {
+      display: block;
+      margin-bottom: 12px;
+      color: rgba(255, 91, 146, .78);
+      font-size: .95rem;
+      font-weight: 800;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .titleStack {
+      position: relative;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+    }
+
+    .titleLayer {
+      grid-area: 1 / 1;
+      margin: 0;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+      font-size: clamp(2.55rem, 6vw, 5.5rem);
+    }
+
+    .titleShadow {
+      color: rgba(255, 91, 146, .16);
+      transform: translateY(14px) scale(1.03);
+      filter: blur(1px);
+    }
+
+    .titleGlow {
+      color: rgba(255,255,255,.72);
+      transform: translateY(-7px) scale(1.01);
+      filter: blur(10px);
+    }
+
+    .titleMain {
+      position: relative;
+      color: var(--text);
+      z-index: 2;
+      animation: titleLift 1.2s var(--ease-soft);
     }
 
     .lead {
-      max-width: 630px;
-      margin: 0 auto 14px;
-      color: var(--muted);
+      max-width: 730px;
+      margin: 0 auto 16px;
       font-size: 1.08rem;
-      line-height: 1.85;
+      line-height: 2;
+      color: var(--muted);
+    }
+
+    .miniLine {
+      width: 126px;
+      height: 1px;
+      margin: 22px auto 18px;
+      background: linear-gradient(90deg, transparent, rgba(255,91,145,.58), transparent);
     }
 
     .tapHint {
-      margin: 24px auto 4px;
       color: var(--accent);
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: .03em;
     }
 
-    .btnRow,
+    .actions,
     .navGroup {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
 
-    .btnRow {
+    .actions {
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     button {
@@ -210,41 +338,67 @@
       border-radius: 999px;
       padding: 14px 24px;
       font: inherit;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: transform var(--ease), box-shadow var(--ease), opacity var(--ease), background var(--ease);
+      transition:
+        transform var(--ease),
+        box-shadow var(--ease),
+        opacity var(--ease),
+        background var(--ease),
+        filter var(--ease);
       -webkit-tap-highlight-color: transparent;
-      box-shadow: 0 10px 24px rgba(255, 103, 152, .14);
+      box-shadow: 0 12px 28px rgba(255, 99, 150, .14);
     }
 
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 32px rgba(255, 103, 152, .2);
+      box-shadow: 0 18px 38px rgba(255, 99, 150, .2);
+      filter: saturate(1.04);
     }
 
-    button:active {
-      transform: scale(.985);
-    }
+    button:active { transform: scale(.985); }
 
     button:disabled {
       opacity: .55;
       cursor: not-allowed;
       box-shadow: none;
+      filter: none;
     }
 
     .primary {
       color: #fff;
-      background: linear-gradient(135deg, var(--accent), #ff7ea8);
+      background: linear-gradient(135deg, var(--accent), #ff7aa6);
     }
 
     .secondary {
       color: var(--accent);
-      background: rgba(255,255,255,.95);
+      background: rgba(255,255,255,.96);
     }
 
     .ghost {
       color: var(--muted);
-      background: rgba(255,255,255,.62);
+      background: rgba(255,255,255,.66);
+    }
+
+    .premiumMusic {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(135deg, #ff5b92, #ff86ac 48%, #ffd692);
+    }
+
+    .premiumMusic::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
+      transform: translateX(-120%);
+      transition: transform .9s ease;
+    }
+
+    .premiumMusic:hover::before {
+      transform: translateX(120%);
     }
 
     .topbar,
@@ -257,19 +411,20 @@
     }
 
     .topbar {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      padding-inline: 2px;
     }
 
     .progress {
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: .01em;
     }
 
     .card {
       position: relative;
       padding: 24px;
-      border-radius: 34px;
+      border-radius: 42px;
       overflow: hidden;
       isolation: isolate;
     }
@@ -280,55 +435,81 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.22), transparent 20%),
-        radial-gradient(circle at top right, rgba(255,255,255,.32), transparent 28%);
+        linear-gradient(180deg, rgba(255,255,255,.24), transparent 20%),
+        radial-gradient(circle at top right, rgba(255,255,255,.28), transparent 30%);
     }
 
     .cardHeader {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .cardHeader h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.75rem, 4vw, 2.7rem);
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.95rem);
       letter-spacing: -0.02em;
+      text-wrap: balance;
     }
 
     .subtitle {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.84;
+    }
+
+    .ornament {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 6px;
+      color: rgba(255, 93, 146, .74);
+      font-size: .95rem;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: 58px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,93,146,.42), transparent);
     }
 
     .slides {
       position: relative;
-      min-height: 580px;
+      min-height: 630px;
+      perspective: 1200px;
     }
 
     .slide {
       display: none;
-      animation: rise .55s var(--ease);
+      opacity: 0;
+      transform: translateY(28px) scale(.985) rotateX(4deg);
+      transform-origin: center center;
     }
 
     .slide.active {
       display: block;
+      animation: cinematicIn .85s var(--ease) forwards;
     }
 
     .story {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 24px;
       align-items: center;
     }
 
     .frame {
       position: relative;
       padding: 10px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
-      box-shadow: var(--shadow-soft);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74));
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     .frame::before {
@@ -337,7 +518,21 @@
       inset: 0;
       border-radius: inherit;
       pointer-events: none;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.66);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.74),
+        inset 0 16px 24px rgba(255,255,255,.18);
+    }
+
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 12px 18px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0,0,0,.09), transparent 72%);
+      filter: blur(12px);
+      opacity: .35;
+      pointer-events: none;
     }
 
     .photo {
@@ -352,36 +547,58 @@
     }
 
     .textCard {
-      padding: 26px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.66));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 10px 30px rgba(155, 85, 112, .08);
+      position: relative;
+      padding: 28px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.68));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.74),
+        0 10px 30px rgba(155, 85, 112, .08);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .textCard::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 26%);
+    }
+
+    .sectionKicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: .85rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 93, 146, .8);
     }
 
     .textCard h3,
     .finalCopy h3 {
       margin: 0 0 12px;
       color: var(--accent);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
-    .textCard h3 {
-      font-size: 1.7rem;
-    }
+    .textCard h3 { font-size: 1.75rem; }
 
     .textCard p {
       margin: 0;
       font-size: 1.06rem;
-      line-height: 1.9;
+      line-height: 1.94;
       color: var(--text);
     }
 
-    .finalWrap {
+    .finalStage {
       position: relative;
-      min-height: 400px;
+      min-height: 560px;
       display: grid;
       place-items: center;
-      padding: 24px 10px 38px;
+      padding: 26px 12px 50px;
       overflow: hidden;
       text-align: center;
       isolation: isolate;
@@ -390,89 +607,128 @@
 
     .finalAura {
       position: absolute;
-      width: 420px;
-      height: 420px;
+      width: 520px;
+      height: 520px;
       border-radius: 999px;
-      filter: blur(44px);
+      filter: blur(60px);
       opacity: .34;
-      background: radial-gradient(circle, rgba(255, 185, 212, .92), transparent 68%);
       pointer-events: none;
     }
 
-    .finalAura.a1 { top: -90px; right: -80px; }
-    .finalAura.a2 { bottom: -120px; left: -60px; background: radial-gradient(circle, rgba(255, 229, 170, .72), transparent 70%); }
+    .a1 {
+      top: -110px;
+      right: -90px;
+      background: radial-gradient(circle, rgba(255, 185, 212, .95), transparent 68%);
+    }
+
+    .a2 {
+      left: -90px;
+      bottom: -140px;
+      background: radial-gradient(circle, rgba(255, 228, 167, .78), transparent 70%);
+    }
+
+    .a3 {
+      width: 340px;
+      height: 340px;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: .18;
+      background: radial-gradient(circle, rgba(255,255,255,.98), transparent 70%);
+    }
+
+    .explosionLayer {
+      position: absolute;
+      inset: 0;
+      z-index: 12;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .explosionParticle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.2);
+      animation: explodeParticle 3s cubic-bezier(.18,.7,.2,1) forwards;
+      will-change: transform, opacity;
+      user-select: none;
+      filter:
+        drop-shadow(0 0 10px rgba(255,255,255,.98))
+        drop-shadow(0 0 18px rgba(255, 193, 219, .95));
+    }
+
+    .explosionParticle.heart {
+      color: rgba(255, 87, 140, .98);
+      text-shadow:
+        0 0 12px rgba(255, 87, 140, .96),
+        0 0 24px rgba(255, 165, 196, .82);
+    }
+
+    .explosionParticle.star {
+      color: rgba(255, 235, 150, .99);
+      text-shadow:
+        0 0 12px rgba(255, 232, 138, .98),
+        0 0 24px rgba(255,255,255,.88);
+    }
 
     .finalCopy {
       position: relative;
       z-index: 5;
-      max-width: 780px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 24px 20px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,.54), rgba(255,255,255,.32));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.44);
+      padding: 34px 28px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.44));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.52),
+        0 18px 44px rgba(170, 82, 116, .10);
+      opacity: 0;
+      transform: translateY(28px) scale(.98);
+      transition: opacity 1s ease, transform 1s var(--ease-soft);
+      will-change: transform, opacity;
+    }
+
+    .finalCopy.reveal {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .finalEmo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.64);
+      color: rgba(255, 91, 146, .85);
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
     .finalCopy h3 {
       margin-bottom: 18px;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      text-wrap: balance;
     }
 
     .finalCopy p {
       margin: 0 0 16px;
       font-size: 1.1rem;
-      line-height: 1.95;
+      line-height: 2;
     }
 
     .finalSign {
       margin-top: 16px;
-      font-size: 1.15rem;
+      font-size: 1.16rem;
       font-weight: 800;
     }
 
-    .sparkleLayer {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .18s ease;
-      contain: strict;
-    }
-
-    .sparkleLayer.show {
-      opacity: 1;
-    }
-
-    .sparkle {
-      position: absolute;
-      opacity: 0;
-      user-select: none;
-      transform: translate3d(0, 0, 0);
-      animation: sparklePulse 1.05s ease-in-out infinite;
-      will-change: transform, opacity;
-      filter:
-        drop-shadow(0 0 10px rgba(255,255,255,.96))
-        drop-shadow(0 0 18px rgba(255, 196, 221, .9));
-    }
-
-    .sparkle.heart {
-      color: rgba(255, 87, 140, .98);
-      text-shadow:
-        0 0 12px rgba(255, 87, 140, .9),
-        0 0 22px rgba(255, 167, 195, .75);
-    }
-
-    .sparkle.star {
-      color: rgba(255, 235, 150, .98);
-      text-shadow:
-        0 0 12px rgba(255, 232, 138, .92),
-        0 0 24px rgba(255,255,255,.88);
-    }
-
-    .nav {
-      margin-top: 24px;
-    }
+    .nav { margin-top: 24px; }
 
     .footerNote {
       margin-top: 18px;
@@ -481,85 +737,78 @@
       font-size: .96rem;
     }
 
-    audio {
-      display: none;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(16px) scale(.995);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+    audio { display: none; }
 
     @keyframes floatHeart {
-      0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
-      50% { transform: translate3d(0, -14px, 0) rotate(6deg); }
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -16px, 0) rotate(6deg); }
     }
 
-    @keyframes sparklePulse {
-      0%, 100% {
-        opacity: .24;
-        transform: scale(.72);
+    @keyframes titleLift {
+      0% { opacity: 0; transform: translateY(18px) scale(.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes shineSweep {
+      0% { transform: translateX(-120%) skewX(-18deg); }
+      100% { transform: translateX(340%) skewX(-18deg); }
+    }
+
+    @keyframes cinematicIn {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(.985) rotateX(4deg);
       }
-      50% {
+      100% {
         opacity: 1;
-        transform: scale(1.15);
+        transform: translateY(0) scale(1) rotateX(0deg);
       }
+    }
+
+    @keyframes explodeParticle {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(.2) rotate(0deg);
+      }
+      10% { opacity: 1; }
+      55% { opacity: 1; }
+      100% {
+        opacity: 0;
+        transform:
+          translate(-50%, -50%)
+          translate3d(var(--tx), var(--ty), 0)
+          scale(1.3)
+          rotate(var(--rot));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .story { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
-      .page {
-        padding: 16px 12px 30px;
-      }
-
+      .shell { padding: 14px 10px 24px; }
       .cover {
         min-height: auto;
-        padding: 22px 16px;
-        border-radius: 28px;
+        padding: 24px 16px;
+        border-radius: 30px;
       }
-
       .card {
         padding: 18px;
-        border-radius: 28px;
+        border-radius: 30px;
       }
-
       .textCard,
-      .finalCopy {
-        padding: 20px 18px;
-      }
-
-      .slides {
-        min-height: 0;
-      }
-
+      .finalCopy { padding: 20px 18px; }
+      .slides { min-height: 0; }
       .topbar,
       .nav,
-      .navGroup {
-        justify-content: center;
-      }
-
-      .navGroup {
-        width: 100%;
-      }
-
-      .finalWrap {
-        min-height: 430px;
-      }
-
-      .coverGlow,
-      .finalAura {
-        opacity: .24;
-      }
+      .navGroup { justify-content: center; }
+      .navGroup { width: 100%; }
+      .finalStage { min-height: 560px; }
+      .cinemaGlow,
+      .finalAura,
+      .orb { opacity: .24; }
+      .titleLayer { font-size: clamp(2.25rem, 10vw, 3.8rem); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -570,25 +819,50 @@
         transition: none !important;
         scroll-behavior: auto !important;
       }
+
+      .finalCopy {
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb1" data-speed="0.020"></div>
+    <div class="orb orb2" data-speed="0.032"></div>
+    <div class="orb orb3" data-speed="0.014"></div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="shell">
     <section id="coverScreen" class="screen active">
       <div class="cover glass">
-        <div class="coverGlow g1"></div>
-        <div class="coverGlow g2"></div>
+        <div class="cinemaGlow g1"></div>
+        <div class="cinemaGlow g2"></div>
+        <div class="cinemaGlow g3"></div>
+        <div class="filmShine"></div>
 
-        <div class="coverInner">
-          <div class="pill">💌 Uma surpresa especial</div>
-          <h1>Uma surpresa para Seu Amor ❤️</h1>
+        <div class="coverInner" data-parallax="0.045">
+          <div class="badge">💌 Uma surpresa especial</div>
+          <span class="trailerLine">uma história guardada em forma de carta</span>
+
+          <div class="titleStack">
+            <h1 class="titleLayer titleShadow">Uma surpresa para Seu Amor ❤️</h1>
+            <h1 class="titleLayer titleGlow">Uma surpresa para Seu Amor ❤️</h1>
+            <h1 class="titleLayer titleMain">Uma surpresa para Seu Amor ❤️</h1>
+          </div>
+
           <p class="lead">
-            Tem uma carta esperando para ser aberta, guardando um pedacinho bonito
-            do que eu sinto por você.
+            Nem sempre o coração consegue explicar tudo em voz alta.
+            Às vezes, ele escolhe o silêncio, o olhar, o carinho… e às vezes escolhe
+            uma carta, para dizer com calma o quanto alguém se tornou especial.
           </p>
+
+          <div class="miniLine"></div>
           <div class="tapHint">Para Seu Amor — toque para abrir ✨</div>
-          <div class="btnRow">
+
+          <div class="actions">
             <button class="primary" id="openLetterBtn">Abrir carta</button>
           </div>
         </div>
@@ -597,7 +871,7 @@
 
     <section id="letterScreen" class="screen">
       <div class="topbar">
-        <div class="pill">De Seu Nome para Seu Amor ✨</div>
+        <div class="badge">De Seu Nome para Seu Amor ✨</div>
         <div class="progress" id="progressText">Página 1 de 5</div>
       </div>
 
@@ -605,21 +879,25 @@
         <div class="cardHeader">
           <h2>Algumas lembranças, sentimentos e pequenos instantes</h2>
           <p class="subtitle">
-            Tudo isso merecia um lugar bonito só para nós.
+            Certas pessoas chegam devagar e, quando a gente percebe, já deixaram
+            a alma inteira mais leve, mais bonita e mais feliz.
           </p>
+          <div class="ornament">✦</div>
         </div>
 
         <div class="slides">
           <article class="slide active">
             <div class="story">
-              <div class="frame">
+              <div class="frame" data-parallax="0.030">
                 <img class="photo" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80" alt="Primeira foto do casal" />
               </div>
-              <div class="textCard">
+              <div class="textCard" data-parallax="0.016">
+                <span class="sectionKicker">Capítulo 1</span>
                 <h3>O começo de tudo</h3>
                 <p>
-                  Desde que você apareceu, os meus dias ganharam mais cor, mais calma
-                  e um motivo bonito para sorrir.
+                  Desde que você apareceu, os meus dias ganharam outro ritmo.
+                  Como se a vida, de repente, tivesse decidido ficar mais bonita,
+                  mais doce e cheia de pequenos motivos para sorrir.
                 </p>
               </div>
             </div>
@@ -627,14 +905,16 @@
 
           <article class="slide">
             <div class="story">
-              <div class="frame">
+              <div class="frame" data-parallax="0.030">
                 <img class="photo" src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?auto=format&fit=crop&w=900&q=80" alt="Segunda foto do casal" />
               </div>
-              <div class="textCard">
+              <div class="textCard" data-parallax="0.016">
+                <span class="sectionKicker">Capítulo 2</span>
                 <h3>Os detalhes que eu amo</h3>
                 <p>
-                  Eu gosto do seu jeito, da sua risada, da forma como você faz os momentos
-                  simples virarem lembranças especiais.
+                  Eu gosto do seu jeito, da sua presença, da forma como você transforma
+                  o simples em especial. Tem algo em você que acalma, encanta
+                  e faz o coração querer ficar por perto.
                 </p>
               </div>
             </div>
@@ -642,14 +922,16 @@
 
           <article class="slide">
             <div class="story">
-              <div class="frame">
+              <div class="frame" data-parallax="0.030">
                 <img class="photo" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Terceira foto do casal" />
               </div>
-              <div class="textCard">
+              <div class="textCard" data-parallax="0.016">
+                <span class="sectionKicker">Capítulo 3</span>
                 <h3>O que eu sinto</h3>
                 <p>
-                  Estar com você me faz sentir em paz. É como se o coração encontrasse
-                  o lugar certo para ficar.
+                  O que eu sinto por você vai além de palavras bonitas.
+                  É admiração, carinho, paz e aquela sensação rara de encontrar
+                  alguém que faz o mundo parecer mais leve só por existir.
                 </p>
               </div>
             </div>
@@ -657,36 +939,47 @@
 
           <article class="slide">
             <div class="story">
-              <div class="frame">
+              <div class="frame" data-parallax="0.030">
                 <img class="photo" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Quarta foto do casal" />
               </div>
-              <div class="textCard">
+              <div class="textCard" data-parallax="0.016">
+                <span class="sectionKicker">Capítulo 4</span>
                 <h3>O que eu desejo</h3>
                 <p>
-                  Quero continuar colecionando memórias com você, celebrando cada fase
-                  e cuidando desse sentimento com todo carinho do mundo.
+                  Eu desejo continuar colecionando memórias com você,
+                  guardando risos, abraços, conversas e todos os instantes
+                  que fazem esse sentimento crescer com delicadeza e verdade.
                 </p>
               </div>
             </div>
           </article>
 
           <article class="slide" id="finalSlide">
-            <div class="finalWrap">
+            <div class="finalStage">
               <div class="finalAura a1"></div>
               <div class="finalAura a2"></div>
-              <div class="sparkleLayer" id="sparkleLayer"></div>
+              <div class="finalAura a3"></div>
 
-              <div class="finalCopy">
+              <div class="explosionLayer" id="explosionLayer"></div>
+
+              <div class="finalCopy" id="finalCopy">
+                <div class="finalEmo">✨ Para guardar no coração</div>
                 <h3>Mensagem final</h3>
                 <p>
-                  Isso é só uma pequena forma de te lembrar que você é muito especial para mim.
-                  Em cada detalhe, em cada lembrança, em cada sentimento bonito… tem você.
+                  Se eu pudesse resumir tudo isso em uma única certeza,
+                  seria esta: você se tornou uma parte muito bonita da minha vida.
                 </p>
                 <p>
-                  Obrigado por existir, por ser essa pessoa incrível e por deixar a minha vida
-                  mais leve, mais doce e mais feliz.
+                  Obrigado por existir, por ser essa pessoa tão especial
+                  e por, mesmo sem perceber, iluminar os meus dias de um jeito
+                  que poucas coisas no mundo conseguem iluminar.
                 </p>
-                <div class="finalSign">Com amor, Seu Nome</div>
+                <p>
+                  E se algum dia você se perguntar o quanto é importante,
+                  lembre-se: há alguém aqui que olha para você com carinho,
+                  admiração e um sentimento sincero que só cresce.
+                </p>
+                <div class="finalSign">Com todo o meu amor, Seu Nome</div>
               </div>
             </div>
           </article>
@@ -698,7 +991,7 @@
             <button class="primary" id="nextBtn">Próximo</button>
           </div>
           <div class="navGroup">
-            <button class="secondary" id="musicBtn">Tocar música</button>
+            <button class="premiumMusic" id="musicBtn">♪ Tocar trilha</button>
             <button class="ghost" id="restartMusicBtn">Recomeçar música</button>
           </div>
         </div>
@@ -715,8 +1008,10 @@
   <script>
     (() => {
       const $ = (s) => document.querySelector(s);
-      const screens = document.querySelectorAll(".screen");
-      const slides = [...document.querySelectorAll(".slide")];
+      const $$ = (s) => [...document.querySelectorAll(s)];
+
+      const screens = $$(".screen");
+      const slides = $$(".slide");
       const progress = $("#progressText");
       const prev = $("#prevBtn");
       const next = $("#nextBtn");
@@ -724,97 +1019,149 @@
       const restart = $("#restartMusicBtn");
       const open = $("#openLetterBtn");
       const audio = $("#bgMusic");
-      const sparkleLayer = $("#sparkleLayer");
+      const explosionLayer = $("#explosionLayer");
+      const finalCopy = $("#finalCopy");
+      const parallaxEls = $$("[data-parallax]");
+      const ambientOrbs = $$(".ambient .orb");
 
       const FINAL = slides.length - 1;
-      const FX_TIME = 3000;
-      const FX_CLEAR = 3400;
-      const FX_COUNT = 24;
-      const PIECES = [
+      const EXPLOSION_TIME = 3000;
+      const PARTICLES = 60;
+      const SYMBOLS = [
         ["❤", "heart"],
+        ["💖", "heart"],
         ["✨", "star"],
         ["⭐", "star"],
-        ["💖", "heart"],
-        ["✦", "star"]
+        ["✦", "star"],
+        ["💫", "star"]
       ];
 
       let current = 0;
-      let hideTimer = 0;
-      let clearTimer = 0;
+      let finalTimer = 0;
+      let lastX = window.innerWidth / 2;
+      let lastY = window.innerHeight / 2;
+      let ticking = false;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
       const resetTimer = (id) => (id && clearTimeout(id), 0);
-      const goTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-      const setText = () => {
+      function updateUI() {
         progress.textContent = `Página ${current + 1} de ${slides.length}`;
         prev.disabled = current === 0;
         next.textContent = current === FINAL ? "Recomeçar" : "Próximo";
-      };
+      }
 
-      const stopFx = () => {
-        hideTimer = resetTimer(hideTimer);
-        clearTimer = resetTimer(clearTimer);
-        sparkleLayer.classList.remove("show");
-        sparkleLayer.replaceChildren();
-      };
+      function clearFinalEffects() {
+        finalTimer = resetTimer(finalTimer);
+        explosionLayer.replaceChildren();
+        finalCopy.classList.remove("reveal");
+      }
 
-      const buildFx = () => {
+      function createExplosion() {
         const frag = document.createDocumentFragment();
 
-        for (let i = 0; i < FX_COUNT; i++) {
-          const [char, type] = PIECES[(Math.random() * PIECES.length) | 0];
+        for (let i = 0; i < PARTICLES; i++) {
+          const [char, type] = SYMBOLS[(Math.random() * SYMBOLS.length) | 0];
           const el = document.createElement("span");
-          el.className = `sparkle ${type}`;
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 95 + Math.random() * 265;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          const rot = (-220 + Math.random() * 440).toFixed(0) + "deg";
+
+          el.className = `explosionParticle ${type}`;
           el.textContent = char;
-          el.style.left = `${8 + Math.random() * 84}%`;
-          el.style.top = `${10 + Math.random() * 78}%`;
-          el.style.fontSize = `${18 + Math.random() * 34}px`;
-          el.style.animationDelay = `${(Math.random() * .85).toFixed(2)}s`;
-          el.style.transform = `translate3d(${((Math.random() - .5) * 22).toFixed(1)}px, ${((Math.random() - .5) * 22).toFixed(1)}px, 0)`;
+          el.style.fontSize = `${18 + Math.random() * 48}px`;
+          el.style.animationDelay = `${(Math.random() * 0.28).toFixed(2)}s`;
+          el.style.setProperty("--tx", `${tx.toFixed(1)}px`);
+          el.style.setProperty("--ty", `${ty.toFixed(1)}px`);
+          el.style.setProperty("--rot", rot);
+
           frag.appendChild(el);
         }
 
-        sparkleLayer.replaceChildren(frag);
-      };
+        explosionLayer.replaceChildren(frag);
+      }
 
-      const startFx = () => {
-        hideTimer = resetTimer(hideTimer);
-        clearTimer = resetTimer(clearTimer);
-        buildFx();
-        requestAnimationFrame(() => sparkleLayer.classList.add("show"));
-        hideTimer = setTimeout(() => sparkleLayer.classList.remove("show"), FX_TIME);
-        clearTimer = setTimeout(() => sparkleLayer.replaceChildren(), FX_CLEAR);
-      };
+      function playFinalSequence() {
+        clearFinalEffects();
+        createExplosion();
 
-      const render = (index) => {
-        const nextIndex = clamp(index, 0, FINAL);
+        finalTimer = setTimeout(() => {
+          finalCopy.classList.add("reveal");
+        }, EXPLOSION_TIME);
+      }
 
-        if (nextIndex !== current) {
+      function render(index) {
+        const target = clamp(index, 0, FINAL);
+
+        if (target !== current) {
           slides[current].classList.remove("active");
-          current = nextIndex;
+          current = target;
           slides[current].classList.add("active");
         }
 
-        setText();
-        current === FINAL ? startFx() : stopFx();
-      };
+        updateUI();
 
-      const showScreen = (screen) => {
-        screens.forEach((el) => el.classList.toggle("active", el === screen));
-        goTop();
-      };
+        if (current === FINAL) {
+          playFinalSequence();
+        } else {
+          clearFinalEffects();
+        }
+      }
 
-      const playAudio = async () => {
+      function showScreen(target) {
+        screens.forEach((screen) => {
+          screen.classList.toggle("active", screen === target);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      async function playAudio() {
         try {
           await audio.play();
-          music.textContent = "Pausar música";
+          music.textContent = "♪ Pausar trilha";
           return true;
         } catch {
-          music.textContent = "Tocar música";
+          music.textContent = "♪ Tocar trilha";
           return false;
         }
-      };
+      }
+
+      function applyParallax(x, y) {
+        if (reducedMotion) return;
+
+        const nx = (x / window.innerWidth - 0.5) * 2;
+        const ny = (y / window.innerHeight - 0.5) * 2;
+
+        parallaxEls.forEach((el) => {
+          const factor = parseFloat(el.dataset.parallax || "0.02");
+          const tx = nx * 24 * (factor * 10);
+          const ty = ny * 18 * (factor * 10);
+          el.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
+        });
+
+        ambientOrbs.forEach((orb) => {
+          const speed = parseFloat(orb.dataset.speed || "0.02");
+          const tx = nx * 120 * speed * 10;
+          const ty = ny * 90 * speed * 10;
+          orb.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
+        });
+      }
+
+      function onPointerMove(x, y) {
+        lastX = x;
+        lastY = y;
+
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+          applyParallax(lastX, lastY);
+          ticking = false;
+        });
+      }
 
       open.addEventListener("click", async () => {
         showScreen($("#letterScreen"));
@@ -822,12 +1169,14 @@
         await playAudio();
       });
 
-      prev.addEventListener("click", () => current > 0 && render(current - 1));
+      prev.addEventListener("click", () => {
+        if (current > 0) render(current - 1);
+      });
 
       next.addEventListener("click", () => {
         if (current === FINAL) {
           render(0);
-          goTop();
+          window.scrollTo({ top: 0, behavior: "smooth" });
           return;
         }
         render(current + 1);
@@ -836,7 +1185,7 @@
       music.addEventListener("click", async () => {
         if (audio.paused) return playAudio();
         audio.pause();
-        music.textContent = "Tocar música";
+        music.textContent = "♪ Tocar trilha";
       });
 
       restart.addEventListener("click", async () => {
@@ -844,7 +1193,14 @@
         await playAudio();
       });
 
+      window.addEventListener("mousemove", (e) => onPointerMove(e.clientX, e.clientY), { passive: true });
+      window.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        if (touch) onPointerMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
       render(0);
+      applyParallax(window.innerWidth / 2, window.innerHeight / 2);
     })();
   </script>
 </body>
