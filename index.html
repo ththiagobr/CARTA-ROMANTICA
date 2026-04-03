@@ -13,6 +13,7 @@
       --rose: #d85b86;
       --rose-dark: #a73b61;
       --text: #442634;
+      --white: #ffffff;
     }
 
     body {
@@ -567,7 +568,6 @@
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
     const dotsWrap = document.getElementById('dots');
-    const photoSlides = slides.filter(slide => !slide.id && !slide.classList.contains('typewriter-box'));
     const finalMessage = `Isso é só uma pequena forma de te lembrar que você é muito especial para mim.
 Em cada detalhe, em cada lembrança, em cada sentimento bonito… tem você.
 
@@ -583,28 +583,24 @@ Com amor, Thiago Oliveira`;
     let showingFinalMessage = false;
     let typeInterval = null;
 
-    photoSlides.forEach((_, index) => {
+    slides.forEach((_, index) => {
       const dot = document.createElement('div');
       dot.className = 'dot' + (index === 0 ? ' active' : '');
       dotsWrap.appendChild(dot);
     });
 
     function renderSlides() {
-      photoSlides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === current);
-      });
-      document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === current);
-      });
+      slides.forEach((slide, index) => slide.classList.toggle('active', index === current));
+      document.querySelectorAll('.dot').forEach((dot, index) => dot.classList.toggle('active', index === current));
     }
 
     function nextSlide() {
       if (showingFinalMessage) return;
 
       const previous = current;
-      current = (current + 1) % photoSlides.length;
+      current = (current + 1) % slides.length;
 
-      if (previous === photoSlides.length - 1 && current === 0) {
+      if (previous === slides.length - 1 && current === 0) {
         completedLoops++;
       }
 
@@ -618,7 +614,7 @@ Com amor, Thiago Oliveira`;
 
     function prevSlide() {
       if (showingFinalMessage) return;
-      current = (current - 1 + photoSlides.length) % photoSlides.length;
+      current = (current - 1 + slides.length) % slides.length;
       renderSlides();
     }
 
@@ -626,7 +622,7 @@ Com amor, Thiago Oliveira`;
       showingFinalMessage = true;
       clearInterval(autoSlide);
 
-      photoSlides.forEach(slide => slide.classList.remove('active'));
+      slides.forEach(slide => slide.classList.remove('active'));
       document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
 
       const box = document.getElementById('typewriterBox');
@@ -753,7 +749,6 @@ Com amor, Thiago Oliveira`;
       setTimeout(() => {
         document.getElementById('cover').classList.add('hidden');
         document.getElementById('experience').classList.remove('hidden');
-        renderSlides();
         autoSlide = setInterval(nextSlide, 5200);
       }, 1300);
     }
@@ -784,6 +779,7 @@ Com amor, Thiago Oliveira`;
     document.getElementById('letterTo').textContent = to;
     document.getElementById('fromName').textContent = from;
     document.getElementById('toName').textContent = to;
+    document.getElementById('signatureName').textContent = from;
   </script>
 </body>
 </html>
